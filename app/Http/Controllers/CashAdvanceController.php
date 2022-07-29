@@ -25,7 +25,6 @@ use App\RapidXUser;
 
 class CashAdvanceController extends Controller
 {
-
     //============================== VIEW CASH ADVANCE ==============================
     public function view_cash_advance(Request $request){
         /* 
@@ -55,6 +54,10 @@ class CashAdvanceController extends Controller
         ->orWhere('president', $rapidx_user_id )
         ->orWhere('president_remark', $rapidx_user_id )
         ->get();
+
+        if($rapidx_username == 'gbcuevas' || $rapidx_username == 'sdcastillo'){
+            $employee_infos = ApproverEmailRecipient::with(['cash_advance_details'])->get();
+        }
 
         $employee_infos = collect($employee_infos)->where('logdel', 0);
         $employee_infos = collect($employee_infos)->whereIn('cash_advance_details.status', [0,1,2,3,4,5,6]);
@@ -928,9 +931,12 @@ class CashAdvanceController extends Controller
         ->orWhere('president_remark', $rapidx_user_id )
         ->get();
 
+        if($rapidx_username == 'gbcuevas' || $rapidx_username == 'sdcastillo'){
+            $employee_infos = ApproverEmailRecipient::with(['cash_advance_details'])->get();
+        }
+
         $employee_infos = collect($employee_infos)->where('logdel', 0);
         $employee_infos = collect($employee_infos)->where('cash_advance_details.status', 7)->where('cash_advance_details.date_liquidated', '==', null);
-        // return $employee_infos;
         
         $approver = UserApprover::where('rapidx_id', $rapidx_user_id)->where('status', 1)->get();
         $get_supervisor_approver = ApproverEmailRecipient::where('supervisor', $rapidx_username)->get();
@@ -1075,6 +1081,10 @@ class CashAdvanceController extends Controller
         ->orWhere('president', $rapidx_user_id )
         ->orWhere('president_remark', $rapidx_user_id )
         ->get();
+
+        if($rapidx_username == 'gbcuevas' || $rapidx_username == 'sdcastillo'){
+            $employee_infos = ApproverEmailRecipient::with(['cash_advance_details'])->get();
+        }
 
         $employee_infos = collect($employee_infos)->where('logdel', 0);
         $employee_infos = collect($employee_infos)->whereIn('cash_advance_details.status', [8,9,10,11,12,13,14]);
@@ -1619,9 +1629,12 @@ class CashAdvanceController extends Controller
         ->orWhere('president_remark', $rapidx_user_id )
         ->get();
 
+        if($rapidx_username == 'gbcuevas' || $rapidx_username == 'sdcastillo'){
+            $employee_infos = ApproverEmailRecipient::with(['cash_advance_details'])->get();
+        }
+
         $employee_infos = collect($employee_infos)->where('logdel', 0);
         $employee_infos = collect($employee_infos)->where('cash_advance_details.status', 7)->where('cash_advance_details.date_liquidated', '!=', null);
-        // return $employee_infos;
         
         $approver = UserApprover::where('rapidx_id', $rapidx_user_id)->where('status', 1)->get();
         $get_supervisor_approver = ApproverEmailRecipient::where('supervisor', $rapidx_username)->get();

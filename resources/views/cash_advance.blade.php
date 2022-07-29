@@ -79,7 +79,7 @@
                                 <div class="tab-content table-responsive" id="tabCashAdvance">  
                                     <div class="tab-pane fade show active" id="CashAdvanceRecord" role="tabpanel" aria-labelledby="tab_cash_advance_record">
                                         <div style="float: right;">          
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddCashAdvance" id="btnShowAddCashAdvanceModal" style="margin-top: 10px;"><i class="fa fa-plus"></i> Add Cash Advance</button>
+                                            <button class="btn btn-dark" data-toggle="modal" data-target="#modalAddCashAdvance" id="btnShowAddCashAdvanceModal" style="margin-top: 10px;"><i class="fa fa-plus"></i> Add Cash Advance</button>
                                         </div> <br><br>
                                         <div class="table-responsive"><br>
                                             <table id="tblCashAdvance" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
@@ -200,180 +200,177 @@
                 </div>
                 <form method="post" id="formAddCashAdvance" enctype="multipart/form-data">
                     @csrf
-
                     <div class="row">
-                        <div class="col-lg-11 mx-auto" style="margin-top:20px;">
+                        <div class="modal-body">
                             <div class="card ">
                                 <div class="card-header">
-                                    <div class="modal-body">
-                                        <h4><strong><center>REQUEST FOR CASH ADVANCE</center></strong></h4>
-                                        <hr/> 
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-5 flex-column d-flex"> 
-                                                <label class="form-control-label">Cash Advance No.</label> 
-                                                <input type="text" id="txtAddCashAdvanceNo" name="ca_no" class="form-control" placeholder="Auto Generate" style="width:125px;" readonly> 
-                                            </div>
+                                    <h4><strong><center>REQUEST FOR CASH ADVANCE</center></strong></h4>
+                                    <hr/> 
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-5 flex-column d-flex"> 
+                                            <label class="form-control-label">Cash Advance No.</label> 
+                                            <input type="text" id="txtAddCashAdvanceNo" name="ca_no" class="form-control" placeholder="Auto Generate" style="width:125px;" readonly> 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-6"> 
-                                                <label class="form-control-label">Date Applied:</label> 
-                                                <input type="text" class="form-control" id="txtAddDateApplied" name="date_applied" value="<?php echo date('M. d, Y'); ?>" readonly> 
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Date of Liquidation:</label> 
-                                                <input type="text" class="form-control" id="txtAddDateOfLiquidation" name="date_of_liquidation" value="{{ \Carbon\Carbon::now()->addMonth()->format('M. d, Y') }} " readonly> 
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6"> 
+                                            <label class="form-control-label">Date Applied:</label> 
+                                            <input type="text" class="form-control" id="txtAddDateApplied" name="date_applied" value="<?php echo date('M. d, Y'); ?>" readonly> 
                                         </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Date of Liquidation:</label> 
+                                            <input type="text" class="form-control" id="txtAddDateOfLiquidation" name="date_of_liquidation" value="{{ \Carbon\Carbon::now()->addMonth()->format('M. d, Y') }} " readonly> 
+                                        </div>
+                                    </div>
 
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Employee No.</label> 
-                                                <input type="text" class="form-control" id="txtAddEmployeeNo" name="employee_no" placeholder="Enter your employee no." > 
-                                            </div>
-
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Mode of Payment:</label> 
-                                                <select class="form-control" id="selectAddModeOfPayment" name="mode_of_payment">
-                                                    <option selected disabled value="">-SELECT-</option>
-                                                    <option value="Payroll Account">Payroll Account</option>
-                                                    <option value="GCash">GCash</option>
-                                                </select>
-                                            </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Employee No.</label> 
+                                            <input type="text" class="form-control" id="txtAddEmployeeNo" name="employee_no" placeholder="Enter your employee no." > 
                                         </div>
 
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Applicant Name:</label> 
-                                                <input type="text" class="form-control" id="txtAddApplicantName" name="applicant_name" placeholder="" readonly> 
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Payroll Account No.</label>
-                                                <input type="text" class="form-control" id="txtAddPayrollAccountNo" name="payroll_account_no" readonly> 
-                                            </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Mode of Payment:</label> 
+                                            <select class="form-control" id="selectAddModeOfPayment" name="mode_of_payment">
+                                                <option selected disabled value="">-SELECT-</option>
+                                                <option value="Payroll Account">Payroll Account</option>
+                                                <option value="GCash">GCash</option>
+                                            </select>
                                         </div>
+                                    </div>
 
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Position:</label> 
-                                                <input type="text" class="form-control" id="txtAddPosition" name="position" placeholder="" readonly> 
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Gcash Account No.</label>
-                                                <input type="text" id="txtAddGcashAccountNo" name="gcash_account_no" placeholder="0000-000-0000" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" disabled="disabled">
-                                            </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Applicant Name:</label> 
+                                            <input type="text" class="form-control" id="txtAddApplicantName" name="applicant_name" placeholder="" readonly> 
                                         </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Payroll Account No.</label>
+                                            <input type="text" class="form-control" id="txtAddPayrollAccountNo" name="payroll_account_no" readonly> 
+                                        </div>
+                                    </div>
 
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Official Station:</label> 
-                                                <input type="text" class="form-control" id="txtAddOfficialStation" name="official_station" placeholder="" readonly> 
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Local No.</label>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Position:</label> 
+                                            <input type="text" class="form-control" id="txtAddPosition" name="position" placeholder="" readonly> 
+                                        </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Gcash Account No.</label>
+                                            <input type="text" id="txtAddGcashAccountNo" name="gcash_account_no" placeholder="0000-000-0000" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" disabled="disabled">
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Official Station:</label> 
+                                            <input type="text" class="form-control" id="txtAddOfficialStation" name="official_station" placeholder="" readonly> 
+                                        </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Local No.</label>
+                                            <div class="input-group"> 
+                                                <select class="form-control select2bs4 selectLocalNo" id="selectAddLocalNo" name="local_no"></select>
+                                            </div> 
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group"> 
+                                                <label class="form-control-label">Amount of Cash Advance:</label> 
                                                 <div class="input-group"> 
-                                                    <select class="form-control select2bs4 selectLocalNo" id="selectAddLocalNo" name="local_no"></select>
-                                                </div> 
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group"> 
-                                                    <label class="form-control-label">Amount of Cash Advance:</label> 
-                                                    <div class="input-group"> 
-                                                        <input type="text" id="txtAddAmountOfCashAdvance" name="amount_of_ca" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6" disabled="disabled">
-                                                        &nbsp;-&nbsp;
-                                                        <input type="text" id="txtAddConvertToWord" name="ca_convert_to_word" placeholder="" class="form-control" style="width:300px;" readonly>
-                                                    </div>
+                                                    <input type="text" id="txtAddAmountOfCashAdvance" name="amount_of_ca" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6" disabled="disabled">
+                                                    &nbsp;-&nbsp;
+                                                    <input type="text" id="txtAddConvertToWord" name="ca_convert_to_word" placeholder="" class="form-control" style="width:300px;" readonly>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input peso radioBtn" type="radio" name="amount_of_ca_currency" id="txtAddAmountOfCashAdvanceCurrency" value="Pesos">
-                                            <label class="form-check-label" for="inlineRadio1">PESO</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input peso radioBtn" type="radio" name="amount_of_ca_currency" id="txtAddAmountOfCashAdvanceCurrency" value="Pesos">
+                                        <label class="form-check-label" for="inlineRadio1">PESO</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input dollar radioBtn" type="radio" name="amount_of_ca_currency" id="txtAddAmountOfCashAdvanceCurrency" value="Dollars">
+                                        <label class="form-check-label" for="inlineRadio2">DOLLAR</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input yen radioBtn" type="radio" name="amount_of_ca_currency" id="txtAddAmountOfCashAdvanceCurrency" value="Yen">
+                                        <label class="form-check-label" for="inlineRadio3">YEN</label>
+                                    </div>
+                                    <hr>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-12"> 
+                                            <label class="col-form-label">Purpose:</label>
+                                            <input type="hidden" class="form-control" name="purpose" rows="3" >
+                                            <textarea type="text" class="form-control" id="txtAddPurpose" name="purpose" placeholder="Remark" maxlength="255"></textarea>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input dollar radioBtn" type="radio" name="amount_of_ca_currency" id="txtAddAmountOfCashAdvanceCurrency" value="Dollars">
-                                            <label class="form-check-label" for="inlineRadio2">DOLLAR</label>
+                                    </div>
+                                    <hr>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Requested By:</label> 
+                                            <input type="text" class="form-control" id="txtAddRequestedBy" name="requested_by" placeholder="Name of requestor" readonly> 
+                                            {{-- <input type="text" class="form-control" id="txtAddRapidxUser" name="rapidx_user_id">  --}}
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input yen radioBtn" type="radio" name="amount_of_ca_currency" id="txtAddAmountOfCashAdvanceCurrency" value="Yen">
-                                            <label class="form-check-label" for="inlineRadio3">YEN</label>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Checked By: (OPTIONAL)</label>
+                                            <div class="input-group"> 
+                                                <select class="form-control select2bs4 selectAddSupervisor" id="selectAddSupervisor" name="supervisor"></select>
+                                            </div> 
                                         </div>
-                                        <hr>
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-12"> 
-                                                <label class="col-form-label">Purpose:</label>
-                                                <input type="hidden" class="form-control" name="purpose" rows="3" >
-                                                <textarea type="text" class="form-control" id="txtAddPurpose" name="purpose" placeholder="Remark" maxlength="255"></textarea>
-                                            </div>
+                                    </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Approved By:</label>
+                                            <div class="input-group"> 
+                                                <select class="form-control select2bs4 selectAddSectHead" id="selectAddSectionHead" name="sect_head"></select>
+                                                <select class="form-control select2bs4 selectAddDeptHead" id="selectAddDepartmentHead" name="dept_head"></select>
+                                            </div> 
                                         </div>
-                                        <hr>
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Requested By:</label> 
-                                                <input type="text" class="form-control" id="txtAddRequestedBy" name="requested_by" placeholder="Name of requestor" readonly> 
-                                                {{-- <input type="text" class="form-control" id="txtAddRapidxUser" name="rapidx_user_id">  --}}
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Checked By: (OPTIONAL)</label>
-                                                <div class="input-group"> 
-                                                    <select class="form-control select2bs4 selectAddSupervisor" id="selectAddSupervisor" name="supervisor"></select>
-                                                </div> 
-                                            </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12"> 
+                                            <label class="form-control-label">Attachment:</label> <br>
+                                            <input type="file" class="" id="txtAddFile" name="uploaded_file" accept=".xlsx, .xls, .csv, application/pdf" style="width:100%;"> 
                                         </div>
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Approved By:</label>
-                                                <div class="input-group"> 
-                                                    <select class="form-control select2bs4 selectAddSectHead" id="selectAddSectionHead" name="sect_head"></select>
-                                                    <select class="form-control select2bs4 selectAddDeptHead" id="selectAddDepartmentHead" name="dept_head"></select>
-                                                </div> 
-                                            </div>
+                                    </div>
+                                    <hr>
+                                    <h5><strong><center>For Accounting Department Only</center></strong></h5><br>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Previous Advance:</label> 
+                                            <input type="text" class="form-control" id="txtAddPreviousAdvance" name="previous_advance" readonly>
                                         </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-12"> 
-                                                <label class="form-control-label">Attachment:</label> <br>
-                                                <input type="file" class="" id="txtAddFile" name="uploaded_file" accept=".xlsx, .xls, .csv, application/pdf" style="width:100%;"> 
-                                            </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Payment Released By:</label>
+                                            {{-- <div class="input-group" style="pointer-events:none; visibility: hidden">  --}}
+                                                <div class="input-group" style="pointer-events: none;"> 
+                                                <select class="form-control select2bs4 selectAddPaymentReleasedBy" id="selectAddPaymentReleasedBy" name="payment_released_by"></select>
+                                            </div> 
                                         </div>
-                                        <hr>
-                                        <h5><strong><center>For Accounting Department Only</center></strong></h5><br>
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Previous Advance:</label> 
-                                                <input type="text" class="form-control" id="txtAddPreviousAdvance" name="previous_advance" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Payment Released By:</label>
-                                                {{-- <div class="input-group" style="pointer-events:none; visibility: hidden">  --}}
-                                                    <div class="input-group" style="pointer-events: none;"> 
-                                                    <select class="form-control select2bs4 selectAddPaymentReleasedBy" id="selectAddPaymentReleasedBy" name="payment_released_by"></select>
-                                                </div> 
-                                            </div>
-                                        </div>
+                                    </div>
 
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Noted By:</label>
-                                                {{-- <div class="input-group"> --}}
-                                                <div class="input-group" style="pointer-events: none;">  
-                                                    <select class="form-control select2bs4 selectAddTreasuryHead" id="selectAddTreasuryHead" name="treasury_head"></select>
-                                                    <select class="form-control select2bs4 selectAddFinanceGeneralManager" id="selectAddFinanceGeneralManager" name="fin_gen_manager"></select>
-                                                </div> 
-                                            </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Date:</label> 
-                                                <input type="date" class="form-control" id="txtAddDate" name="date" readonly> 
-                                            </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Noted By:</label>
+                                            {{-- <div class="input-group"> --}}
+                                            <div class="input-group" style="pointer-events: none;">  
+                                                <select class="form-control select2bs4 selectAddTreasuryHead" id="selectAddTreasuryHead" name="treasury_head"></select>
+                                                <select class="form-control select2bs4 selectAddFinanceGeneralManager" id="selectAddFinanceGeneralManager" name="fin_gen_manager"></select>
+                                            </div> 
                                         </div>
-                                        <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <div class="input-group" style="display:none;">  
-                                                    <select class="form-control select2bs4 selectAddPresident" id="selectAddPresident" name="president"></select>
-                                                </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <label class="form-control-label">Date:</label> 
+                                            <input type="date" class="form-control" id="txtAddDate" name="date" readonly> 
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-between text-left">
+                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="input-group" style="display:none;">  
+                                                <select class="form-control select2bs4 selectAddPresident" id="selectAddPresident" name="president"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -382,8 +379,8 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnAddCashAdvance" class="btn btn-primary"><i id="iBtnAddCashAdvanceIcon" class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnAddCashAdvance" class="btn btn-dark"><i id="iBtnAddCashAdvanceIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
                 
@@ -405,10 +402,10 @@
                     @csrf
 
                     <div class="row">
-                        <div class="col-lg-11 mx-auto" style="margin-top:20px;">
-                            <div class="card ">
-                                <div class="card-header">
-                                    <div class="modal-body">
+                        {{-- <div class="col-lg-11 mx-auto" style="margin-top:20px;"> --}}
+                            <div class="modal-body">
+                                <div class="card ">
+                                    <div class="card-header">
                                         <h4><strong><center>REQUEST FOR CASH ADVANCE</center></strong></h4>
                                         <hr> 
                                         <div class="row justify-content-between text-left">
@@ -453,7 +450,7 @@
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex"> 
                                                 <label class="form-control-label">Payroll Account No.</label>
-                                                <input type="text" class="form-control" id="txtEditPayrollAccountNo" name="payroll_account_no" placeholder=""> 
+                                                <input type="text" class="form-control" id="txtEditPayrollAccountNo" name="payroll_account_no" placeholder="" readonly> 
                                             </div>
                                         </div>
 
@@ -593,11 +590,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {{-- </div> --}}
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnEditCashAdvance" class="btn btn-primary"><i id="iBtnEditCashAdvanceIcon" class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnEditCashAdvance" class="btn btn-dark"><i id="iBtnEditCashAdvanceIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
                 
@@ -1245,8 +1242,8 @@
                 GetCashAdvanceByIdToEdit(cash_advanceId); 
 
                  // READ ONLY (Mode of Payment)
-                $("#txtEditPayrollAccountNo").attr('disabled', 'disabled');
-                $("#txtEditGcashAccountNo").attr('disabled', 'disabled');
+                // $("#txtEditPayrollAccountNo").attr('disabled', 'disabled');
+                // $("#txtEditGcashAccountNo").attr('disabled', 'disabled');
 
                 // READ ONLY (File Upload)
                 $('#txtEditReuploadFile').attr('disabled', 'disabbled');
