@@ -17,7 +17,7 @@ function AddCashAdvance(){
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut",
     };
-    
+
     let formData = new FormData($('#formAddCashAdvance')[0]);
 
 	$.ajax({
@@ -237,8 +237,14 @@ function AddCashAdvance(){
                     $("#formAddCashAdvance")[0].reset();
                     toastr.success('Succesfully Saved!');
                     dataTableCashAdvance.draw(); // reload the tables after insertion
+                }else{
+                    alert('Cash Advance No. "'+$("#txtAddCashAdvanceNo").val()+'" is already exist! '+"\n\n"+' Please refresh the browser to process the request once again.')
                 }
-            } 
+            }
+
+            // if(response['result'] == 0){
+            //     alert('Cash Advance No. "'+$("#txtAddCashAdvanceNo").val()+'" is already exist! '+"\n\n"+' Please refresh the browser to process the request once again.')
+            // }
 
             $("#iBtnAddCashAdvanceIcon").removeClass('fa fa-spinner fa-pulse');
             $("#btnAddCashAdvance").removeAttr('disabled');
@@ -270,7 +276,7 @@ function GetLocalNo(cboElement)
     },
     success: function(response){
         result = '';
-        
+
         if(response['phone_dir'].length > 0){
             result = '<option value="0" selected disabled> -- Local No. -- </option>';
             for(let index = 0; index < response['phone_dir'].length; index++){
@@ -293,15 +299,15 @@ function toWords(number) {
     var zero = ["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine",];
 
     var ten = ["Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen",];
-    
+
     var twenty = ["Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety",];
-    
+
     var thousand = ["", "Thousand", "Million", "Billion", "Trillion"];
 
     number = number.toString();
     number = number.replace(/[\, ]/g, "");
 
-    if (number != parseFloat(number)) 
+    if (number != parseFloat(number))
         return "not a number";
         var x = number.indexOf(".");
 
@@ -567,7 +573,7 @@ function EditCashAdvance(){
                     toastr.warning(response['tryCatchError']);
                 }
             }
-            
+
             $("#iBtnEditCashAdvanceIcon").removeClass('fa fa-spinner fa-pulse');
             $("#btnEditCashAdvance").removeAttr('disabled');
             $("#iBtnEditCashAdvanceIcon").addClass('fa fa-check');
@@ -608,7 +614,7 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
             cash_advance_id: cash_AdvanceId
         },
         dataType: "json",
-        beforeSend: function(){    
+        beforeSend: function(){
         },
         success: function(response){
             let cash_advances = response['cash_advance'];
@@ -642,7 +648,17 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
                 $("#selectEditTreasuryHead")            .val(cash_advance_approver[0].treasury_head).trigger('change');
                 $("#selectEditFinanceGeneralManager")   .val(cash_advance_approver[0].finance_general_manager).trigger('change');
                 $("#selectEditPresident")               .val(cash_advance_approver[0].president).trigger('change');
-                // console.log(cash_advances_supervisor_approver[0].supervisor_approver['emp_name']);
+
+                if(cash_advances[0].amount_of_ca_currency == 'Pesos'){
+                    $(".peso ").prop("checked",true);
+                    console.log('peso')
+                }else if (cash_advances[0].amount_of_ca_currency == 'Dollars'){
+                    $(".dollar").prop("checked",true);
+                    console.log('dollar')
+                }else if (cash_advances[0].amount_of_ca_currency == 'Yen'){
+                    $(".yen").prop("checked",true);
+                    console.log('yen')
+                }
 
                 $('#modalEditCashAdvance').on('hide', function() {
                     window.location.reload();
@@ -652,7 +668,7 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
                 toastr.warning('No Record Found!');
             }
         },
-        
+
         error: function(data, xhr, status){
             toastr.error('An error occured!\n' + 'Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
         }
@@ -778,7 +794,7 @@ function DisapprovedCashAdvance(){
             $("#iBtnDisapproveRemarkIcon").addClass('fa fa-check');
         }
     });
-    
+
 }
 
 //============================== GET PRESIDENT ID ==============================
@@ -790,7 +806,7 @@ function GetPresidentID()
         method: "get",
         data:{
         },
-        
+
         dataType: "json",
         beforeSend: function(){
 
@@ -926,7 +942,7 @@ function PreviousAdvance(){
             // $("#iBtnDisapproveRemarkIcon").addClass('fa fa-check');
         }
     });
-    
+
 }
 
 //=========================== ADD PREVIOUS ADVANCE ==========================
@@ -974,7 +990,7 @@ function GetPreviousAdvance(cash_AdvanceId){
             // $("#iBtnDisapproveRemarkIcon").addClass('fa fa-check');
         }
     });
-    
+
 }
 
 //============================== DATE OF CASH RECEIVED ==============================

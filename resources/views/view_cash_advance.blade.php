@@ -270,10 +270,20 @@
 
             <tr>
                 <td style="text-align:right;">CASH RECEIVED DATE:</td>
-                <td style="border-bottom: 1px solid black;"><center>&nbsp;{{ $data['date'] }}</center></td>
+                @if ($data['date'] != "")    
+                    <td style="border-bottom: 1px solid black;"><center>&nbsp;{{ \Carbon\Carbon::parse($data['date'])->format('M. d, Y') }}</center></td>    
+                @else
+                    <td style="border-bottom: 1px solid black;"></td>
+                @endif
+
                 <!--Chan April 19, 2022 -->
                 <td style="text-align:right;">DATE LIQUIDATED:</td>
-                <td style="border-bottom: 1px solid black;"><center>&nbsp;{{ $data['date_liquidated'] }}</center></td>
+                @if ($data['date_liquidated'] != "")    
+                    <td style="border-bottom: 1px solid black;"><center>&nbsp;{{ \Carbon\Carbon::parse($data['date_liquidated'])->format('M. d, Y') }}</center></td>
+                @else
+                    <td style="border-bottom: 1px solid black;"></td>
+                @endif
+
                 <td style=""></td>
             </tr>
 

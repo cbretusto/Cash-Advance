@@ -96,7 +96,7 @@
                                 
                                 <div class="col-sm-12">
                                     <div class="form-group row">
-                                        <label class="col-sm-12 col-form-label">For more info, please log-in to your Rapidx account. Go to http://rapidx/ and Online Cash Advance </label>
+                                        <label class="col-sm-12 col-form-label">Please login your Rapidx account to get more information. Locate the Cash Advance Request System at http://rapidx/.</label>
                                     </div>
                                 </div>
 

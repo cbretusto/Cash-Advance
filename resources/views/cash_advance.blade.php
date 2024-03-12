@@ -31,7 +31,9 @@
             margin: 3px 3px;
         }
     </style>
-
+    @php
+        date_default_timezone_set('Asia/Manila');
+    @endphp
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -60,7 +62,7 @@
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="tabCashAdvance" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link" id="tab_cash_advance_record" data-toggle="tab" href="#CashAdvanceRecord" role="tab" aria-controls="CashAdvanceRecord" aria-selected="false">Cash Advance Record</a>                                
+                                        <a class="nav-link active" id="tab_cash_advance_record" data-toggle="tab" href="#CashAdvanceRecord" role="tab" aria-controls="CashAdvanceRecord" aria-selected="false">Cash Advance Record</a>                                
                                     </li>
 
                                     <li class="nav-item">
@@ -73,6 +75,10 @@
 
                                     <li class="nav-item">
                                         <a class="nav-link" id="CashAdvanveLiquidated" data-toggle="tab" href="#CashAdvanceLiquidated" role="tab" aria-controls="CashAdvanceLiquidated" aria-selected="false">LIQUIDATED</a>                                
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="CashAdvanveCancelled" data-toggle="tab" href="#CashAdvanceCancelled" role="tab" aria-controls="CashAdvanceCancelled" aria-selected="false">CANCELLED</a>                                
                                     </li>
                                 </ul>
 
@@ -179,6 +185,30 @@
                                             </table>
                                         </div>
                                     </div>
+
+                                    <div class="tab-pane fade" id="CashAdvanceCancelled" role="tabpanel" aria-labelledby="CashAdvanveCancelled">
+                                        <div class="table-responsive"><br><br>
+                                            <table id="tblCashAdvanceCancelled" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Status</th>
+                                                        <th>CA No.</th>
+                                                        <th>Date Applied</th>
+                                                        <th>EmpNo.</th>
+                                                        <th>Applicant Name</th>
+                                                        <th>Position</th>
+                                                        <th>Official Station</th>
+                                                        <th>Amount</th>
+                                                        <th>Mode of Payment</th>
+                                                        <th>Purpose</th>
+                                                        <th>Requested By</th>
+                                                        <th>Uploaded File</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +245,7 @@
                                     <div class="row">
                                         <div class="form-group col-sm-6"> 
                                             <label class="form-control-label">Date Applied:</label> 
-                                            <input type="text" class="form-control" id="txtAddDateApplied" name="date_applied" value="<?php echo date('M. d, Y'); ?>" readonly> 
+                                            <input type="text" class="form-control" id="txtAddDateApplied" name="date_applied" value="{{ \Carbon\Carbon::now()->format('M. d, Y') }}" readonly> 
                                         </div>
                                         <div class="form-group col-sm-6 flex-column d-flex"> 
                                             <label class="form-control-label">Date of Liquidation:</label> 
@@ -482,7 +512,7 @@
                                                 <div class="form-group"> 
                                                     <label class="form-control-label">Amount of Cash Advance:</label> 
                                                     <div class="input-group"> 
-                                                        <input type="text" id="txtEditAmountOfCashAdvance" name="amount_of_ca" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6" disabled="disabled">
+                                                        <input type="text" id="txtEditAmountOfCashAdvance" name="amount_of_ca" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6">
                                                         &nbsp;-&nbsp;
                                                         <input type="text" id="txtEditConvertToWord" name="ca_convert_to_word" placeholder="" class="form-control" style="width:300px;" readonly> 
                                                     </div>
@@ -515,7 +545,6 @@
                                             <div class="form-group col-sm-6 flex-column d-flex"> 
                                                 <label class="form-control-label">Requested By:</label> 
                                                 <input type="text" class="form-control" id="txtEditRequestedBy" name="requested_by" placeholder="Name of requestor" readonly> 
-                                                {{-- <input type="text" class="form-control" id="txtAddRapidxUser" name="rapidx_user_id">  --}}
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex"> 
                                                 <label class="form-control-label">Checked By:</label>
@@ -523,13 +552,6 @@
                                                     <select class="form-control select2bs4 selectEditSupervisor" id="selectEditSupervisor" name="supervisor"></select>
                                                 </div> 
                                             </div>
-                                            {{-- <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Approved By:</label>
-                                                <div class="input-group"> 
-                                                    <select class="form-control select2bs4 selectAddSectHead" id="selectAddSectionHead" name="sect_head"></select>
-                                                    <select class="form-control select2bs4 selectAddDeptHead" id="selectAddDepartmentHead" name="dept_head"></select>
-                                                </div> 
-                                            </div> --}}
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex"> 
@@ -653,10 +675,10 @@
                                 <div class="form-group col-sm-12"> 
                                     <h5> Are you sure you want to disapprove the Cash Advance request? </h5>
                                     <label class="col-form-label">Remark:</label>
-                                    <input type="text" name="cash_advance_id" id="disapprovedCashAdvanceId">
-                                    <input type="text" name="status" id="disapprovedCashAdvanceStat">
+                                    <input type="hidden" name="cash_advance_id" id="disapprovedCashAdvanceId">
+                                    <input type="hidden" name="status" id="disapprovedCashAdvanceStat">
                                     <textarea type="text" class="form-control" id="txtDisapproveRemarks" name="disapprove_remarks" placeholder="Remark"></textarea>
-                                    <input type="text" class="form-control" id="classification_remarks" name="classification_remarks">
+                                    <input type="hidden" class="form-control" id="classification_remarks" name="classification_remarks">
                                 </div>
                             </div>
                         </div>
@@ -685,8 +707,8 @@
                     <div class="modal-body">
                         <div class="row">			
                             <div class="row justify-content-between text-left">
-                                <input type="text" name="president_id" id="addPresidentId">
-                                <input type="text" name="cash_advance_id" id="addPresidentCashAdvanceId">
+                                <input type="hidden" name="president_id" id="addPresidentId">
+                                <input type="hidden" name="cash_advance_id" id="addPresidentCashAdvanceId">
                                 <div class="form-group col-sm-12"> 
                                     <h5> Are you sure you want to add the President? </h5>
                                 </div>
@@ -796,6 +818,39 @@
             </div>
         </div>
     </div><!-- DATE LIQUIDATED MODAL END -->
+
+     <!-- cancel MODAL START -->
+     <div class="modal fade" id="modalCancel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h4 class="modal-title"><i class="fas fa-times">  </i>  Cancel</h4>
+                    <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="formCancel">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">			
+                            
+                                <input type="hidden" name="cash_advance_id" id="cancelCAId">
+                                <label class="col-form-label">Remarks: </label>
+                                
+                                {{-- <input type="text" class="form-control" id="txtDateLiquidated" name="date_liquidated" value="{{ \Carbon\Carbon::now()->format('M. d, Y') }} " readonly>  --}}
+                                {{-- <input type="date" class="form-control" id="txtDateLiquidated" name="date_liquidated" required>  --}}
+
+                                <textarea name="cancel_remarks" id="cancelRemarks" cols="20" rows="5" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnSaveCancel" class="btn btn-dark">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- DATE LIQUIDATED MODAL END -->
 @endsection
 
 <!-- {{-- JS CONTENT --}} -->
@@ -843,7 +898,7 @@
             dataTableCashAdvance = $("#tblCashAdvance").DataTable({
                 "processing" : false,
                 "serverSide" : true,
-                "order": [[ 0, "desc" ]],
+                "order": [[ 2, "desc" ]],
                 "ajax" : {
                     url: "view_cash_advance", // this will be pass in the uri called view_cash_advance that handles datatables of view_cash_advance() method inside CashAdvanceController
                 },
@@ -869,7 +924,7 @@
             dataTableCashAdvanceApproved = $("#tblCashAdvanceApproved").DataTable({
                 "processing" : false,
                 "serverSide" : true,
-                // "order": [[ 0, "desc" ]],
+                "order": [[ 2, "desc" ]],
                 "ajax" : {
                     url: "view_cash_advance_approved", // this will be pass in the uri called view_cash_advance that handles datatables of view_cash_advance() method inside CashAdvanceController
                 },
@@ -895,7 +950,7 @@
             dataTableCashAdvanceDisapproved = $("#tblCashAdvanceDisapproved").DataTable({
                 "processing" : false,
                 "serverSide" : true,
-                // "order": [[ 0, "desc" ]],
+                "order": [[ 2, "desc" ]],
                 "ajax" : {
                     url: "view_cash_advance_disapproved", // this will be pass in the uri called view_cash_advance that handles datatables of view_cash_advance() method inside CashAdvanceController
                 },
@@ -921,7 +976,7 @@
             dataTableCashAdvanceLiquidated = $("#tblCashAdvanceLiquidated").DataTable({
                 "processing" : false,
                 "serverSide" : true,
-                // "order": [[ 0, "desc" ]],
+                "order": [[ 2, "desc" ]],
                 "ajax" : {
                     url: "view_cash_advance_liquidated", // this will be pass in the uri called view_cash_advance that handles datatables of view_cash_advance() method inside CashAdvanceController
                 },
@@ -944,15 +999,44 @@
                 ],
             }); // USERS DATATABLES END
 
+            dataTableCashAdvanceCancelled = $("#tblCashAdvanceCancelled").DataTable({
+                "processing" : false,
+                "serverSide" : true,
+                "order": [[ 2, "desc" ]],
+                "ajax" : {
+                    url: "view_cash_advance_canceled", // this will be pass in the uri called view_cash_advance that handles datatables of view_cash_advance() method inside CashAdvanceController
+                },
+                "columns":[
+                    { "data" : "action", orderable:false, searchable:false },
+                    { "data" : "status" },
+                    //cash_advance_details = model
+                    { "data" : "cash_advance_details.ca_no" },
+                    { "data" : "cash_advance_details.date_applied" },
+                    { "data" : "cash_advance_details.employee_no" },
+                    { "data" : "cash_advance_details.applicant_name" },
+                    { "data" : "cash_advance_details.position"},
+                    { "data" : "cash_advance_details.official_station" },
+                    { "data" : "cash_advance_details.amount_of_ca" },
+                    { "data" : "cash_advance_details.mode_of_payment" },
+                    { "data" : "cash_advance_details.purpose" },
+                    { "data" : "cash_advance_details.requested_by" },
+                    { "data" : "uploaded_file" },
+                ],
+            }); // CANCELED DATATABLES END
+
             // ============================== ADD CASH ADVANCE ==============================
             // The AddCashAdvance(); function is inside public/js/my_js/CashAdvance.js
             // after the submission, the ajax request will pass the formAddCashAdvance(form) of data(input) in the uri(add_cash_advance)
             // then the controller will handle that uri to use specific method called add_cash_advance() inside CashAdvanceController
             $("#formAddCashAdvance").submit(function(event){
                 event.preventDefault(); // to stop the form submission
-                AddCashAdvance();
-                dataTableCashAdvance.draw(); // reload the tables after insertion            
-                });
+                if($('#txtAddCashAdvanceNo').val() == ''){
+                    alert('Cash Advance System does not accept below 10,000 pesos.')
+                }else{
+                    AddCashAdvance();
+                    dataTableCashAdvance.draw(); // reload the tables after insertion            
+                }
+            });
 
             // VALIDATION(remove errors)
             $("#btnShowAddCashAdvanceModal").click(function(){
@@ -1081,6 +1165,7 @@
                                 $("input[name='official_station']", $("#formAddCashAdvance")).val('');
                                 $("input[name='applicant_name']", $("#formAddCashAdvance")).val('');
 
+                                $('#selectAddModeOfPayment').val('').trigger('change');
                                 // Optional for clearing values
                                 // $("#txtAddAppName").val('');
                                 // $("#txtAddos").val('');
@@ -1117,7 +1202,7 @@
 
                             success: function(result){
                                 if(result['payroll_account'] != null){
-                                    $("#txtAddPayrollAccountNo").val(result['payroll_account'][0].AccountNumber).trigger('change')
+                                    $("#txtAddPayrollAccountNo").val(result['payroll_account'][0].account_no).trigger('change')
                                     // console.log(result['payroll_account'].AccountNumber);
                                 }else{
                                     // Optional for clearing values
@@ -1151,7 +1236,7 @@
 
                             success: function(result){
                                 if(result['payroll_account'] != null){
-                                    $("#txtEditPayrollAccountNo").val(result['payroll_account'][0].AccountNumber);
+                                    $("#txtEditPayrollAccountNo").val(result['payroll_account'][0].account_no);
                                     // console.log(result['payroll_account'].AccountNumber);
                                 }else{
                                     // Optional for clearing values
@@ -1246,15 +1331,20 @@
                 // $("#txtEditGcashAccountNo").attr('disabled', 'disabled');
 
                 // READ ONLY (File Upload)
-                $('#txtEditReuploadFile').attr('disabled', 'disabbled');
+                $('#txtEditReuploadFile').attr('disabled', 'disabled');
+                $('#txtEditAmountOfCashAdvance').attr('readonly', true);
             });
             // The EditCashAdvance(); function is inside public/js/my_js/CashAdvance.js
             // after the submission, the ajax request will pass the formEditCashAdvance(form) of its data(input) in the uri(edit_cash_advance)
             // then the controller will handle that uri to use specific method called edit_cash_advance() inside CashAdvanceController
             $("#formEditCashAdvance").submit(function(event){
                 event.preventDefault();
-                EditCashAdvance();
-                dataTableCashAdvance.draw();
+                if($('#txtAddCashAdvanceNo').val() == 'You need 10,000 above'){
+                    alert('Cash Advance System does not accept below 10,000 pesos.')
+                }else{
+                    EditCashAdvance();
+                    dataTableCashAdvance.draw();
+                }
             });
 
             //====================== EDIT MODE OF PAYMENT ( ONCHANGE ) ======================
@@ -1312,6 +1402,7 @@
                                 $("input[name='position']", $("#formEditCashAdvance")).val('');
                                 $("input[name='official_station']", $("#formEditCashAdvance")).val('');
 
+                                $('#selectEditModeOfPayment').val('').trigger('change');
                                 // Optional for clearing values
                                 // $("#txtAddAppName").val('');
                                 // $("#txtAddos").val('');
@@ -1449,8 +1540,8 @@
             $('.peso, .dollar, .yen').on('click', function() {
                 // $('#txtAddAmountOfCashAdvanceCurrency').attr('checked', 'checked');
                 if($(this).is(":checked")){
-                    $("#txtAddAmountOfCashAdvance").removeAttr('disabled', false);
-                    $("#txtEditAmountOfCashAdvance").removeAttr('disabled', false);
+                    $("#txtAddAmountOfCashAdvance").removeAttr('disabled', true);
+                    $("#txtEditAmountOfCashAdvance").removeAttr('readonly', false);
                 }
                 else{
                     // $("#txtAddAmountOfCashAdvance").removeAttr('disabled', true);
@@ -1609,6 +1700,30 @@
             $("#modalDateLiquidated").on('hidden.bs.modal', function () {
                 console.log('DataTable Reload Successfully');
                 reloadCashAdvanceDataTable();
+            });
+
+
+            $(document).on('click','.actionCancelCA', function(){
+                let caId = $(this).attr('cash_advance-id');
+                $('#cancelCAId').val(caId);
+            });
+
+            $('#formCancel').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "post",
+                    url: "cancel_cash_advance",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        if(response['result'] == 1){
+                            toastr.success('Cancelled!!');
+                            $('#modalCancel').modal('hide');
+                            $('#formCancel')[0].reset();
+                            dataTableCashAdvanceApproved.draw();
+                        }
+                    }
+                });
             });
 
         }); // JQUERY DOCUMENT READY END

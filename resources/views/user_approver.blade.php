@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-body">
                                 <div style="float: right;">                   
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddUser" id="btnShowAddUserModal"><i class="fa fa-user-plus"></i> Add User Approver</button>
+                                    <button class="btn btn-dark" data-toggle="modal" data-target="#modalAddUser" id="btnShowAddUserModal"><i class="fa fa-user-plus"></i> Add User Approver</button>
                                 </div> <br><br>
                                 <div class="table-responsive">
                                     <table id="tblUsers" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
@@ -100,8 +100,8 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnAddUser" class="btn btn-primary"><i id="iBtnAddUserIcon" class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnAddUser" class="btn btn-dark"><i id="iBtnAddUserIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
             </div>
@@ -123,12 +123,11 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Employee No.</label>
-                                    <input type="text" class="form-control" name="employee_no" id="txtEditUserEmployeeNo">
-                                </div>   
-
                                 <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Employee No.</label>
+                                        <input type="text" class="form-control" name="employee_no" id="txtEditUserEmployeeNo">
+                                    </div>   
                                     <input type="hidden" class="form-control" name="user_id" id="txtEditUserId">
                                     <div class="form-group">
                                         <label>Name</label>
@@ -153,8 +152,8 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="btnEditUser" class="btn btn-primary"><i id="iBtnEditUserIcon" class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btnEditUser" class="btn btn-dark"><i id="iBtnEditUserIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
             </div>
@@ -179,8 +178,8 @@
                         <input type="hidden" name="status" placeholder="Status" id="txtChangeUserStatUserStat">
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                        <button type="submit" id="btnChangeUserStat" class="btn btn-primary"><i id="iBtnChangeUserStatIcon" class="fa fa-check"></i> Yes</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">No</button>
+                        <button type="submit" id="btnChangeUserStat" class="btn btn-dark"><i id="iBtnChangeUserStatIcon" class="fa fa-check"></i> Yes</button>
                     </div>
                 </form>
             </div>
@@ -223,7 +222,8 @@
             dataTableUsers = $("#tblUsers").DataTable({
                 "processing" : false,
                 "serverSide" : true,
-                "order": [[ 0, "desc" ]],
+                "order":  [[ 5, "desc" ], [ 1, "asc" ]],
+                // "aaSorting": [[ 1, "asc" ]],
                 "ajax" : {
                     url: "view_users", // this will be pass in the uri called view_users that handles datatables of view_users() method inside UserApproverController
                 },

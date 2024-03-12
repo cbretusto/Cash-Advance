@@ -30,7 +30,8 @@ return [
     */
 
     // 'host' => env('MAIL_HOST', 'smtp.googlemail.com'),
-    'host' => env('MAIL_HOST', '192.168.3.254'),
+    // 'host' => env('MAIL_HOST', '192.168.3.254'),
+    'host' => env('MAIL_HOST', 'mail3.pricon.ph'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +44,8 @@ return [
     |
     */
 
-    // 'port' => env('MAIL_PORT', 465),
-    'port' => env('MAIL_PORT', 25),
+    // 'port' => env('MAIL_PORT', 25),
+    'port' => env('MAIL_PORT', 465),
 
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +63,8 @@ return [
     //     'name' => env('MAIL_FROM_NAME', 'Online Cash Advance'),
     // ],
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'CashAdvanceSystemNotification@pricon.ph'),
+        // 'address' => env('MAIL_FROM_ADDRESS', 'CashAdvanceSystemNotification@pricon.ph'),
+        'address' => env('MAIL_FROM_ADDRESS', 'issinfoservice@pricon.ph'),
         'name' => env('MAIL_FROM_NAME', 'Online Cash Advance'),
     ],
 
@@ -77,8 +79,8 @@ return [
     |
     */
 
-    // 'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
-    'encryption' => env('MAIL_ENCRYPTION', 'null'),
+    // 'encryption' => env('MAIL_ENCRYPTION', 'null'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

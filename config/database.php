@@ -103,26 +103,26 @@ return [
             ]) : [],
         ],
 
-        // 'mysql_systemone_acl' => [
-        //     'driver' => 'mysql',
-        //     'url' => env('DATABASE_URL'),
-        //     'host' => env('DB_HOST_SYSTEMONE_ACL', '192.168.3.240'),
-        //     'port' => env('DB_PORT_SYSTEMONE_ACL', '3306'),
-        //     'database' => env('DB_DATABASE_SYSTEMONE_ACL', 'forge'),
-        //     'username' => env('DB_DATABASE_SYSTEMONE_ACL', 'forge'),
-        //     'password' => env('DB_DATABASE_SYSTEMONE_ACL', ''),
-        //     'unix_socket' => env('DB_SOCKET', ''),
-        //     'charset' => 'utf8',
-        //     'collation' => 'utf8_unicode_ci',
-        //     'prefix' => '',
-        //     'prefix_indexes' => true,
-        //     'strict' => true,
-        //     'engine' => null,
-        //     'options' => extension_loaded('pdo_mysql') ? array_filter([
-        //         PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-        //     ]) : [],
-        // ],
-
+        'mysql_rapid_payroll' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_RAPID_PAYROLL', '192.168.3.235'),
+            'port' => env('DB_PORT_RAPID_PAYROLL', '3306'),
+            'database' => env('DB_DATABASE_RAPID_PAYROLL', 'forge'),
+            'username' => env('DB_USERNAME_RAPID_PAYROLL', 'forge'),
+            'password' => env('DB_PASSWORD_RAPID_PAYROLL', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+        
         'mysql_rapidx' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),

@@ -18,7 +18,7 @@ class UserApproverController extends Controller
     //============================== VIEW USERS ==============================
     public function view_users(){
         $users = UserApprover::with(['rapidx_user_details'])->where('logdel',0)->get();
-// return $users[0]->rapidx_user_details->name;
+            // return $users[0]->rapidx_user_details->name;
         return DataTables::of($users)
         ->addColumn('fullname',function($user){
             $result = $user->rapidx_user_details->name;
@@ -49,7 +49,7 @@ class UserApproverController extends Controller
 
         ->addColumn('action', function($user){
             $result = '<center><div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Action">
+                        <button type="button" class="btn btn-dark dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Action">
                             <i class="fa fa-lg fa-users-cog"></i> 
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">'; // dropdown-menu start

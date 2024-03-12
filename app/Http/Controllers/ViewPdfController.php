@@ -99,7 +99,7 @@ class ViewPdfController extends Controller
             'user_id'                   => $get_requestor_esignature[0]->requestor_esignature->employee_number,
         ];
 
-        
+
         if($get_approver[0]->supervisor == null){
             $data['supervisor'] = $get_approver[0]->supervisor;
             $e_signature['supervisor'] = $get_esignature[0]->supervisor;
@@ -119,16 +119,16 @@ class ViewPdfController extends Controller
 
         // return $requestor_esignature;
         // $pdf = PDF::loadView('view_cash_advance', $data, $e_signature);
-        $pdf = PDF::loadView('view_cash_advance', 
-            array('data' => $data, 
-                'get_approver' => $get_approver, 
-                'get_esignature' => $get_esignature, 
-                'e_signature' => $e_signature, 
-                'get_requestor_esignature' => $get_requestor_esignature, 
+        $pdf = PDF::loadView('view_cash_advance',
+            array('data' => $data,
+                'get_approver' => $get_approver,
+                'get_esignature' => $get_esignature,
+                'e_signature' => $e_signature,
+                'get_requestor_esignature' => $get_requestor_esignature,
                 'requestor_esignature' => $requestor_esignature,
             ));
         $pdf->setPaper('A5', 'Landscape');
-    
+
         return $pdf->stream();
     }
 }

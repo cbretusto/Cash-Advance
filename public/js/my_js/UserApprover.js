@@ -172,10 +172,10 @@ function GetUserByIdToEdit(userId){
         success: function(response){
             let user = response['user'];
             if(user.length > 0){
-                $("#txtEditUserEmployee_no").val(user[0].employee_no);
-                $("#selectEditRapidxUser").val(user[0].rapidx_user).trigger('change');
-                // console.log(user[0].rapidx_user);
-                $("selectEditUserClassification").val(user[0].classification).trigger('change');
+                $("#txtEditUserEmployeeNo").val(user[0].employee_no);
+                $("#selectEditRapidxUser").val(user[0].rapidx_id).trigger('change');
+                $("#selectEditUserClassification").val(user[0].classification).trigger('change');
+                console.log('GET',user[0].rapidx_user_details);
             }
             else{
                 toastr.warning('No User Record Found!');
@@ -475,6 +475,7 @@ function GetSupervisorApprover(cboElement){
                 result = '<option value="" selected> -- Optional -- </option>';
                 for(let index = 0; index < response['supervisor'].length; index++){
                     result += '<option value="' + response['supervisor'][index].username + '">' + response['supervisor'][index].emp_name + '</option>';
+                    // result += '<option value="' + response['supervisor'][index].EmpNo + '">' + response['supervisor'][index].emp_name + '</option>';
                 }
             }
             else{

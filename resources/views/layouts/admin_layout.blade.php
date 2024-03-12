@@ -13,7 +13,7 @@
     @if($_SESSION['rapidx_user_level_id'] == 5)
         @if(count($_SESSION['rapidx_user_accesses']) > 0)
             @for($index = 0; $index < count($_SESSION['rapidx_user_accesses']); $index++)
-                @if($_SESSION['rapidx_user_accesses'][$index]['module_id'] == 7)
+                @if($_SESSION['rapidx_user_accesses'][$index]['module_id'] == 12)
                     @php 
                         $isAuthorized = true; 
                         $user_level = $_SESSION['rapidx_user_accesses'][$index]['user_level_id'];

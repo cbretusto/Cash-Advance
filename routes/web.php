@@ -29,6 +29,7 @@ Route::get('/user_approver', function () {
 
 // CASH ADVANCE CONTROLLER
 Route::get('/view_cash_advance', 'CashAdvanceController@view_cash_advance');
+Route::get('/view_cash_advance_test', 'CashAdvanceController@view_cash_advance_test');
 Route::get('/view_cash_advance_approved', 'CashAdvanceController@view_cash_advance_approved');
 Route::get('/view_cash_advance_disapproved', 'CashAdvanceController@view_cash_advance_disapproved');
 Route::get('/view_cash_advance_liquidated', 'CashAdvanceController@view_cash_advance_liquidated');
@@ -52,6 +53,10 @@ Route::post('/date_cash_received', 'CashAdvanceController@date_cash_received')->
 Route::get('/download_file/{id}', 'CashAdvanceController@download_file');
 Route::get('/get_rapidx_user', 'CashAdvanceController@get_rapidx_user');
 Route::post('/date_liquidated', 'CashAdvanceController@date_liquidated')->name('date_liquidated');
+
+
+Route::get('/view_cash_advance_canceled', 'CashAdvanceController@view_cash_advance_canceled');
+Route::post('/cancel_cash_advance', 'CashAdvanceController@cancel_cash_advance');
 
 //USER APPROVER CONTROLLER
 Route::get('/view_users', 'UserApproverController@view_users');
