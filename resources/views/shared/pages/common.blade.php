@@ -72,3 +72,62 @@
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+<div class="card-body">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#userList" type="button" role="tab">User List</button>
+      </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#approverList" type="button" role="tab">Approver List</button>
+      </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="userList" role="tabpanel">
+          <div class="text-right mt-4">                   
+              <button type="button" class="btn btn-dark mb-3" id="buttonAddUser" data-bs-toggle="modal" data-bs-target="#modalUser"><i class="fa fa-plus fa-md"></i> New User</button>
+          </div>
+          <div class="table-responsive">
+              <table id="tableUserList" class="table table-bordered table-hover nowrap" style="width: 100%;">
+                  <thead>
+                      <tr>
+                          <th>Action</th>
+                          <th>Status</th>
+                          <th>Employee No.</th>
+                          <th>Name</th>
+                          <th>Username</th>
+                          <th>Email</th>
+                          <th>Department</th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+      </div>
+      <div class="tab-pane fade" id="approverList" role="tabpanel">
+          <div class="text-right mt-4">                   
+              <button type="button" class="btn btn-dark mb-3" id="buttonAddApprover" data-bs-toggle="modal" data-bs-target="#modalApprover"><i class="fa fa-plus fa-md"></i> New Approver</button>
+          </div>
+          <div class="table-responsive">
+              <table id="tableApproverList" class="table table-bordered table-hover nowrap" style="width: 100%;">
+                  <thead>
+                      <tr>
+                          <th>Action</th>
+                          <th>Name</th>
+                          <th>Classification</th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>

@@ -34,74 +34,56 @@
         @endif
     @endif
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>ISS | @yield('title')</title>
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="{{ asset('public/images/favicon.ico') }}">
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Rapidx | @yield('title')</title>
+            <!-- Tell the browser to be responsive to screen width -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="shortcut icon" type="image/png" href="{{ asset('public/images/favicon.ico') }}">
+            @include('shared.css_links.css_links')
+        </head>
 
-        @include('shared.css_links.css_links')
-    </head>
-    <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-    @include('shared.pages.header')
+        <body class="hold-transition sidebar-mini">
+            <input type="hidden" id="loginUserId" value="<?php echo $_SESSION['rapidx_user_id']; ?>">
+            <div class="wrapper">
+                @include('shared.pages.header')
+                @include('shared.pages.super_user_nav')
+                @yield('content_page')
+                @include('shared.pages.footer')
+            </div>
+            
+            @include('shared.js_links.js_links')
+            @yield('js_content')
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    verifyUser();
+                    function verifyUser(){
+                        let loginUserId = $('#loginUserId').val();
+                        console.log('Session(Admin/User):', loginUserId);
+                        $.ajax({
+                            url: "get_user_log",
+                            method: "get",
+                            data: {
+                                loginUserId : loginUserId
+                            },
+                            dataType: "json",
 
-    @include('shared.pages.super_user_nav')
-
-    @yield('content_page')
-    
-    @include('shared.pages.footer')
-    </div>
-    @include('shared.js_links.js_links')
-    @yield('js_content')
-
-    <!-- <script type="text/javascript">
-    $(document).ready(function(){
-        $("#formSignOut").submit(function(event){
-        event.preventDefault();
-        SignOut();
-        });
-    });
-    </script> -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#aLogout").click(function(event){
-                UserLogout();
-            });
-        });
-
-        function UserLogout(){
-            $.ajax({
-                url: "user_logout",
-                method: "get",
-                dataType: "json",
-                beforeSend: function(){
-
-                },
-                success: function(JsonObject){
-                    if(JsonObject['result'] == 1){
-                        window.location = '../RapidX/';
+                            success: function(response){
+                                if(response['result'] == 0){
+                                    window.location.href = 'error';
+                                }
+                            }
+                        });
                     }
-                    else{
-                        alert('Logout Error!');
-                    }
-                }
-            });
-        }
-    </script>
-    </body>
-</html>
+                });
+            </script>
+        </body>
+    </html>
 @else
-<script type="text/javascript">
-    window.location = "../RapidX/";
-</script>
-@endauth
-</body>
-</html>
-
-
-    
+    <script type="text/javascript">
+        window.location = "../RapidX/";
+    </script>
+@endif

@@ -1817,12 +1817,6 @@ class CashAdvanceController extends Controller
                     $upaloaded_status = 2;
                 }
 
-                // if(isset($request->uploaded_file)){
-                    
-                //     // get original file name
-                //     $original_filename = $request->file('uploaded_file')->getClientOriginalName();
-                    
-                //     Storage::putFileAs('public/CashAdvanceUploadedFile', $request->uploaded_file,  $original_filename);
                 $ca_info = OnlineCashAdvance::where('ca_no', $request->ca_no)->where('logdel', 0)->get();
                 if(count($ca_info) != 1){
                     $ca_id = OnlineCashAdvance::insertGetId([
@@ -1881,8 +1875,6 @@ class CashAdvanceController extends Controller
                         $send_email_to_ca_owner = $rapidx_user_id;
                         $for_approval = OnlineCashAdvance::with(['approver_email_recipients',])->get();
                         $get_data = ['data' => $data];
-                        // dd($get_data['data']);
-                        // return $get_data;
                         $recipients = RapidXUser::where('id', $send_email)->get();
                         $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
     
@@ -1896,79 +1888,6 @@ class CashAdvanceController extends Controller
                 
                 DB::commit();
                 return response()->json(['result' => "1"]);
-                // }
-                // else{
-                //     $ca_id = OnlineCashAdvance::insertGetId([
-                //         'status'              => $supervisor_status,
-                //         'ca_no'               => $request->ca_no,
-                //         'date_applied'        => $request->date_applied,
-                //         'date_of_liquidation' => $request->date_of_liquidation,
-                //         'employee_no'         => $request->employee_no,
-                //         'mode_of_payment'     => $request->mode_of_payment,
-                //         'applicant_name'      => $request->applicant_name,
-                //         'payroll_account_no'  => $request->payroll_account_no,
-                //         'position'            => $request->position,
-                //         'gcash_account_no'    => $request->gcash_account_no,
-                //         'official_station'    => $request->official_station,
-                //         'local_no'            => $request->local_no,
-                //         'amount_of_ca'        => $request->amount_of_ca,
-                //         'amount_of_ca_currency' =>$request->amount_of_ca_currency,
-                //         'ca_convert_to_word'  => $request->ca_convert_to_word,
-                //         'purpose'             => $request->purpose,
-                //         'requested_by'        => $request->requested_by,
-                //         'uploaded_file'       => 'N/A',
-                //         'uploaded_file_status' => 2, //no file
-                //         'previous_advance'    => $request->previous_advance,
-                //         'date'                => $request->date,
-                //         'created_at'          => date('Y-m-d H:i:s')
-                //     ]);
-
-                //     ApproverEmailRecipient::insert([
-                //         'ca_id'                   => $ca_id,
-                //         'user_id'                 => $rapidx_user_id,
-                //         'supervisor'              => $request->supervisor,
-                //         'section_head'            => $request->sect_head,
-                //         'department_head'         => $request->dept_head,
-                //         'cashier'                 => $request->payment_released_by,
-                //         'treasury_head'           => $request->treasury_head,
-                //         'finance_general_manager' => $request->fin_gen_manager,
-                //         'president'               => $request->president,
-                //         'created_at'              => date('Y-m-d H:i:s')
-                //     ]);
-
-                //     DB::commit();
-
-                //     if ($request->supervisor != ""){
-                //         // CHAN APRIL 12, 2022
-                //         $send_email = $request->supervisor;
-                //         $send_email_to_ca_owner = $rapidx_user_id;
-                //         $get_email = ApproverEmailRecipient::with('supervisor_approver')->where('supervisor',$send_email)->first();
-                //         $for_approval = OnlineCashAdvance::with(['approver_email_recipients',])->get();
-                //         $get_data = ['data' => $data];
-                //         $recipients = SystemOneSupervisor::where('email_add', $get_email->supervisor_approver->email_add)->get();
-                //         $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
-
-                //         Mail::send('mail.cash_advance_approval_mail', $get_data, function($message) use($recipients, $cc_owner){
-                //             $message->to($recipients[0]->email_add)->cc($cc_owner[0]->email)->bcc('cbretusto@pricon.ph')->subject('For Approval in Online Cash Advance');
-                //         });
-                //     }
-                //     else{
-                //         $send_email = $request->sect_head;
-                //         $send_email_to_ca_owner = $rapidx_user_id;
-                //         $for_approval = OnlineCashAdvance::with(['approver_email_recipients',])->get();
-                //         $get_data = ['data' => $data];
-                //         // dd($get_data['data']);
-                //         // return $get_data;
-                //         $recipients = RapidXUser::where('id', $send_email)->get();
-                //         $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
-
-                //         Mail::send('mail.cash_advance_approval_mail', $get_data, function($message) use($recipients, $cc_owner){
-                //             $message->to($recipients[0]->email)->bcc('cbretusto@pricon.ph')->subject('For Approval in Online Cash Advance');
-                //         });
-                //     }
-
-                    // return response()->json(['result' => "1"]);
-                // }
             }
             catch(\Exception $e) {
                 DB::rollback();
@@ -2920,7 +2839,16 @@ class CashAdvanceController extends Controller
         ]);
 
         return response()->json(['result' => 1]);
-
     }
+
+    public function get_user_log(Request $request){
+        $user_log = RapidXUser::with(['rapidx_user_access_details'])
+        ->where('id', $request->loginUserId)
+        ->where('user_stat', 1)
+        ->get();
+
+        return response()->json(['result' => count($user_log[0]->rapidx_user_access_details)]);
+    }
+
 }
 

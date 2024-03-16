@@ -5,7 +5,6 @@
 @section('title', 'Cash Advance')
 
 @section('content_page')
-
     <style type="text/css">
         table{
             color: black;

@@ -28,6 +28,7 @@ Route::get('/user_approver', function () {
 // })->name('view_cash_advance');
 
 // CASH ADVANCE CONTROLLER
+Route::get('/get_user_log', 'CashAdvanceController@get_user_log');
 Route::get('/view_cash_advance', 'CashAdvanceController@view_cash_advance');
 Route::get('/view_cash_advance_test', 'CashAdvanceController@view_cash_advance_test');
 Route::get('/view_cash_advance_approved', 'CashAdvanceController@view_cash_advance_approved');
