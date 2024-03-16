@@ -2846,7 +2846,7 @@ class CashAdvanceController extends Controller
         ->where('id', $request->loginUserId)
         ->where('user_stat', 1)
         ->get();
-
+        // return $user_log;
         return response()->json(['result' => count($user_log[0]->rapidx_user_access_details)]);
     }
 
