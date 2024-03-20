@@ -2573,26 +2573,29 @@ class CashAdvanceController extends Controller
     //============================== AUTO GENERATE CASH ADVANCE NO. ==============================
     public function get_ca_no_records(Request $request){
         date_default_timezone_set('Asia/Manila');
-        // $year = date('y');
+
+        $var = OnlineCashAdvance::orderBy('id', 'desc')->first();
+        $ca_no1 = $var->ca_no;
+
         if ($request->currency == 'Pesos'){
             if ($request->ca_auto_generate > 10000){
-                $var = OnlineCashAdvance::where('amount_of_ca', '>', 10000)
-                ->orderBy('id', 'desc')->first();
+                // $var = OnlineCashAdvance::where('amount_of_ca', '>', 10000)
+                //->orderBy('id', 'desc')->first(); //OLD QUERY
+
                 if ($var == null){
                     $ca_no = '3995'; //Last CA No. before implement the Cash Advance System
                 }else{
-                    $ca_no1 = $var->ca_no;
                     $ca_no = intval($ca_no1) + 1;
                 }
             }
-        }else{
-            $var = OnlineCashAdvance::orderBy('id', 'desc')->first();
-                if ($var == null){
-                    $ca_no = '3995'; //Last CA No. before implement the Cash Advance System
-                }else{
-                    $ca_no1 = $var->ca_no;
-                    $ca_no = intval($ca_no1) + 1;
-                }
+        }
+        else{
+            // $var = OnlineCashAdvance::orderBy('id', 'desc')->first(); //OLD QUERY
+            if ($var == null){
+                $ca_no = '3995'; //Last CA No. before implement the Cash Advance System
+            }else{
+                $ca_no = intval($ca_no1) + 1;
+            }
         }
         return response()->json(['result' => 1,  'cash_advance_ca_no' => $ca_no, 'ca_auto_generate' => $request->ca_auto_generate, 'currency' => $request->currency]);   
     }
