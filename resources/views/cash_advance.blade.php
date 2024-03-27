@@ -69,11 +69,11 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="CashAdvanveDisapproved" data-toggle="tab" href="#CashAdvanceDisapproved" role="tab" aria-controls="CashAdvanceDisapproved" aria-selected="false">DISAPPROVED</a>                                
+                                        <a class="nav-link" id="CashAdvanveLiquidated" data-toggle="tab" href="#CashAdvanceLiquidated" role="tab" aria-controls="CashAdvanceLiquidated" aria-selected="false">LIQUIDATED</a>                                
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="CashAdvanveLiquidated" data-toggle="tab" href="#CashAdvanceLiquidated" role="tab" aria-controls="CashAdvanceLiquidated" aria-selected="false">LIQUIDATED</a>                                
+                                        <a class="nav-link" id="CashAdvanveDisapproved" data-toggle="tab" href="#CashAdvanceDisapproved" role="tab" aria-controls="CashAdvanceDisapproved" aria-selected="false">DISAPPROVED</a>                                
                                     </li>
 
                                     <li class="nav-item">
@@ -135,9 +135,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade" id="CashAdvanceDisapproved" role="tabpanel" aria-labelledby="tab_cash_advance_disapproved">
+                                    <div class="tab-pane fade" id="CashAdvanceLiquidated" role="tabpanel" aria-labelledby="tab_cash_advance_liquidated">
                                         <div class="table-responsive"><br><br>
-                                            <table id="tblCashAdvanceDisapproved" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
+                                            <table id="tblCashAdvanceLiquidated" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
                                                 <thead>
                                                     <tr>
                                                         <th>Action</th>
@@ -160,9 +160,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade" id="CashAdvanceLiquidated" role="tabpanel" aria-labelledby="tab_cash_advance_liquidated">
+                                    <div class="tab-pane fade" id="CashAdvanceDisapproved" role="tabpanel" aria-labelledby="tab_cash_advance_disapproved">
                                         <div class="table-responsive"><br><br>
-                                            <table id="tblCashAdvanceLiquidated" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
+                                            <table id="tblCashAdvanceDisapproved" class="table table-sm table-bordered table-striped table-hover" style="width: 100%;">
                                                 <thead>
                                                     <tr>
                                                         <th>Action</th>
