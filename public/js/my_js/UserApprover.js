@@ -474,8 +474,8 @@ function GetSupervisorApprover(cboElement){
             if(response['supervisor'].length > 0){
                 result = '<option value="" selected> -- Optional -- </option>';
                 for(let index = 0; index < response['supervisor'].length; index++){
-                    result += '<option value="' + response['supervisor'][index].username + '">' + response['supervisor'][index].emp_name + '</option>';
-                    // result += '<option value="' + response['supervisor'][index].EmpNo + '">' + response['supervisor'][index].emp_name + '</option>';
+                    // result += '<option value="' + response['supervisor'][index].username + '">' + response['supervisor'][index].emp_name + '</option>';
+                    result += '<option value="' + response['supervisor'][index].EmpNo + '">' + response['supervisor'][index].emp_name + '</option>';
                 }
             }
             else{

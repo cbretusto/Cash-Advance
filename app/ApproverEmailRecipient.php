@@ -16,7 +16,8 @@ class ApproverEmailRecipient extends Model
     protected $connection = 'mysql';
 
     public function supervisor_approver(){
-        return $this->hasOne(SystemOneSupervisor::class, 'username', 'supervisor');
+        // return $this->hasOne(UserApprover::class, 'rapidx_id', 'supervisor');
+        return $this->hasOne(SystemOneSupervisor::class, 'EmpNo', 'supervisor');
     }
     public function supervisor_remark(){
         return $this->hasOne(UserApprover::class, 'rapidx_id', 'supervisor_remark');
