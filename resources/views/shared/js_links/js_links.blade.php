@@ -21,6 +21,6 @@
 <script src="{{ asset('public/template/plugins/toastr/toastr.min.js') }}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('public/js/my_js/CashAdvance.js?n=3') }}"></script>
-<script src="{{ asset('public/js/my_js/UserApprover.js?n=2') }}"></script>
-<script src="{{ asset('public/js/my_js/NumberToWord.js?n=0') }}"></script>
+<script src="{{ asset('public/js/my_js/CashAdvance.js?n=4') }}"></script>
+<script src="{{ asset('public/js/my_js/UserApprover.js?n=123123') }}"></script>
+<script src="{{ asset('public/js/my_js/NumberToWord.js?n=1') }}"></script>

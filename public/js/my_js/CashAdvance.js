@@ -297,11 +297,8 @@ function GetLocalNo(cboElement)
 //=================================== DIGITS CONVERT TO WORD ===================================
 function toWords(number) {
     var zero = ["Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine",];
-
     var ten = ["Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen",];
-
     var twenty = ["Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety",];
-
     var thousand = ["", "Thousand", "Million", "Billion", "Trillion"];
 
     number = number.toString();
@@ -515,20 +512,20 @@ function EditCashAdvance(){
                     $("#selectEditSupervisor").attr('title', response['error']['supervisor']);
                 }
                 if(response['error']['sect_head'] === undefined){
-                    $("#selectEditSectHead").removeClass('is-invalid');
-                    $("#selectEditSectHead").attr('title', '');
+                    $("#selectEditSectionHead").removeClass('is-invalid');
+                    $("#selectEditSectionHead").attr('title', '');
                 }
                 else{
-                    $("#selectEditSectHead").addClass('is-invalid');
-                    $("#selectEditSectHead").attr('title', response['error']['sect_head']);
+                    $("#selectEditSectionHead").addClass('is-invalid');
+                    $("#selectEditSectionHead").attr('title', response['error']['sect_head']);
                 }
                 if(response['error']['dept_head'] === undefined){
-                    $("#selectEditDeptHead").removeClass('is-invalid');
-                    $("#selectEditDeptHead").attr('title', '');
+                    $("#selectEditDepartmentHead").removeClass('is-invalid');
+                    $("#selectEditDepartmentHead").attr('title', '');
                 }
                 else{
-                    $("#selectEditDeptHead").addClass('is-invalid');
-                    $("#selectEditDeptHead").attr('title', response['error']['dept_head']);
+                    $("#selectEditDepartmentHead").addClass('is-invalid');
+                    $("#selectEditDepartmentHead").attr('title', response['error']['dept_head']);
                 }
                 if(response['error']['previous_advance'] === undefined){
                     $("#txtEditPreviousAdvance").removeClass('is-invalid');
@@ -650,7 +647,7 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
                 $("#selectEditPresident")               .val(cash_advance_approver[0].president).trigger('change');
 
                 if(cash_advances[0].amount_of_ca_currency == 'Pesos'){
-                    $(".peso ").prop("checked",true);
+                    $(".peso").prop("checked",true);
                     console.log('peso')
                 }else if (cash_advances[0].amount_of_ca_currency == 'Dollars'){
                     $(".dollar").prop("checked",true);

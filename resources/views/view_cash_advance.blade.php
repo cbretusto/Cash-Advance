@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+@php
+    $e_sign = 'http://rapidx/RapidX_E-Signature';
+@endphp
 <html>
     <head>
         <meta charset="UTF-8">
@@ -89,7 +92,8 @@
             <tr >
                 <td style=""></td>
                 <td style="">
-                    <img src="{{ storage_path() . ("/app/public/e-signature/". $requestor_esignature['user_id'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50">
+                    {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $requestor_esignature['user_id'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50"> --}}
+                    <img src="{{$e_sign.'/'.$requestor_esignature['user_id'] }}.png" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50">
                 </td>
                 <td style=""></td>
                 <td>
@@ -101,8 +105,9 @@
                             || $get_esignature[0]->cash_advance_details->status == 5 
                             || $get_esignature[0]->cash_advance_details->status == 6 
                             || $get_esignature[0]->cash_advance_details->status == 7 )
-                            <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['supervisor'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 30px;" width="80" height="50">
-                        @else
+                            {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['supervisor'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 30px;" width="80" height="50"> --}}
+                            <img src="{{$e_sign.'/'.$e_signature['supervisor'] }}.png" style="position: absolute; bottom:94%; margin-left: 30px;" width="80" height="50">
+                            @else
 
                         @endif
                     @else
@@ -141,15 +146,17 @@
                         || $get_esignature[0]->cash_advance_details->status == 5 
                         || $get_esignature[0]->cash_advance_details->status == 6 
                         || $get_esignature[0]->cash_advance_details->status == 7 ) 
-                        <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['section_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50">
-
+                        {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['section_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50"> --}}
+                        <img src="{{$e_sign.'/'.$e_signature['section_head'] }}.png" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50">
                         @elseif ($get_approver[0]->supervisor == null && $get_esignature[0]->cash_advance_details->status == 2 
                         || $get_esignature[0]->cash_advance_details->status == 3 
                         || $get_esignature[0]->cash_advance_details->status == 4 
                         || $get_esignature[0]->cash_advance_details->status == 5 
                         || $get_esignature[0]->cash_advance_details->status == 6 
                         || $get_esignature[0]->cash_advance_details->status == 7 ) 
-                        <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['section_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50">
+                        {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['section_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50"> --}}
+                        <img src="{{$e_sign.'/'.$e_signature['section_head'] }}.png" style="position: absolute; bottom:94%; margin-left: 35px;" width="80" height="50">
+
                     @endif
                 </td>
 
@@ -159,7 +166,8 @@
                         || $get_esignature[0]->cash_advance_details->status == 5 
                         || $get_esignature[0]->cash_advance_details->status == 6 
                         || $get_esignature[0]->cash_advance_details->status == 7 ) 
-                        <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['department_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 65px;" width="80" height="50">
+                        {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['department_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 65px;" width="80" height="50"> --}}
+                        <img src="{{$e_sign.'/'.$e_signature['department_head'] }}.png" style="position: absolute; bottom:94%; margin-left: 65px;" width="80" height="50">
                     @endif
                 </td>
                 <td style=""></td>
@@ -196,7 +204,8 @@
                         || $get_esignature[0]->cash_advance_details->status == 5 
                         || $get_esignature[0]->cash_advance_details->status == 6 
                         || $get_esignature[0]->cash_advance_details->status == 7 ) 
-                        <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['cashier'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 26px;" width="80" height="50">
+                        {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['cashier'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 26px;" width="80" height="50"> --}}
+                        <img src="{{$e_sign.'/'.$e_signature['cashier'] }}.png" style="position: absolute; bottom:94%; margin-left: 26px;" width="80" height="50">
                     @endif
                 </td>
             </tr>
@@ -226,21 +235,24 @@
                     @if ($get_esignature[0]->cash_advance_details->status == 5 
                         || $get_esignature[0]->cash_advance_details->status == 6 
                         || $get_esignature[0]->cash_advance_details->status == 7 ) 
-                        <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['treasury_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 45px;" width="80" height="50">
+                        {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['treasury_head'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 45px;" width="80" height="50"> --}}
+                        <img src="{{$e_sign.'/'.$e_signature['treasury_head'] }}.png" style="position: absolute; bottom:94%; margin-left: 45px;" width="80" height="50">
                     @endif
                 </td>
 
                 <td style="">
                     @if ($get_esignature[0]->cash_advance_details->status == 6 
                         || $get_esignature[0]->cash_advance_details->status == 7 ) 
-                        <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['finance_general_manager'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 65px;" width="80" height="50">
+                        {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['finance_general_manager'] .".png") }}" style="position: absolute; bottom:94%; margin-left: 65px;" width="80" height="50"> --}}
+                        <img src="{{$e_sign.'/'.$e_signature['finance_general_manager'] }}.png" style="position: absolute; bottom:94%; margin-left: 65px;" width="80" height="50">
                     @endif
                 </td>
 
                 <td style="">
                     @if ($get_esignature[0]->cash_advance_details->status == 7 ) 
                         @if ($e_signature['president'] != "")
-                            <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['president'] .".png") }}" style="position: absolute; bottom:93%; margin-left: 25px;" width="80" height="50">
+                            {{-- <img src="{{ storage_path() . ("/app/public/e-signature/". $e_signature['president'] .".png") }}" style="position: absolute; bottom:93%; margin-left: 25px;" width="80" height="50"> --}}
+                            <img src="{{$e_sign.'/'.$e_signature['president'] }}.png" style="position: absolute; bottom:93%; margin-left: 25px;" width="80" height="50">
                         @endif
                     @endif
                 </td>

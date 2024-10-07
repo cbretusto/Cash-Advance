@@ -72,7 +72,14 @@
                             dataType: "json",
 
                             success: function(response){
-                                if(response['result'] == 0){
+                                let result = response['result']
+                                let access = 0;
+                                for (let index = 0; index < result.rapidx_user_access_details.length; index++) {
+                                    if(result.rapidx_user_access_details[index].module_id == 12){ // 12 = Cash Advance Module
+                                        access = 1
+                                    }
+                                }
+                                if(access == 0){
                                     window.location.href = 'error';
                                 }
                             }

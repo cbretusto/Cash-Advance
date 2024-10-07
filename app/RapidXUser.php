@@ -12,7 +12,8 @@ class RapidXUser extends Model
     protected $connection = "mysql_rapidx";
 
     public function rapidx_user_access_details(){
-        return $this->hasMany(RapidXUserAccess::class, 'user_id', 'id')->where('module_id', '12'); //12 = Cash Advance Module
+        // return $this->hasMany(RapidXUserAccess::class, 'user_id', 'id')->where('module_id', '12'); //12 = Cash Advance Module
+        return $this->hasMany(RapidXUserAccess::class, 'user_id', 'id')->where('user_access_stat', 1);
     }
 
 }

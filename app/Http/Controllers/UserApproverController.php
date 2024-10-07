@@ -215,17 +215,20 @@ class UserApproverController extends Controller
         }
     }
 
-    //=====
     public function load_rapidx_user_list(Request $request)
     {
-        $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
-        return response()->json(['users' => $users]);
+        if($request->selectedEmployee == ''){
+            $users = RapidXUser::where('user_stat', 1)->orderBy('name','asc')->whereNotIn('name',['Admin','Test QAD Admin Approver'])->get();
+            return response()->json(['users' => $users]);
+        }else{
+            $user = RapidXUser::where('user_stat', 1)->where('id', $request->selectedEmployee)->get('employee_number');
+            return response()->json(['user' => $user]);
+        }
     }
 
     //====================================== GET SUPERVISOR ======================================
     public function get_supervisor_approver(Request $request){
-
-        $supervisor = SystemOneSupervisor::all();
+        $supervisor = SystemOneSupervisor::orderBy('emp_name', 'ASC')->get();
         // return $supervisor;
         return response()->json(["supervisor" => $supervisor]);
     }

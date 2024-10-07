@@ -59,7 +59,7 @@
     </div>
 
     <!-- ADD MODAL START -->
-    <div class="modal fade" id="modalAddUser">
+    <div class="modal fade show-modal" id="modalAddUser">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
@@ -75,17 +75,17 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Employee No.</label>
-                                    <input type="text" class="form-control" name="employee_no" id="txtAddUserEmployeeNo" required>
+                                    <input type="text" class="form-control reset-value" name="employee_no" id="txtAddUserEmployeeNo" placeholder="Auto generate" required readonly>
                                 </div>   
 
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <select class="form-control sel-rapidx-user-list select2bs4" id="selectAddRapidxUser" name="rapidx_user"></select>
+                                    <select class="form-control sel-rapidx-user-list select2bs4 reset-value" id="selectAddRapidxUser" name="rapidx_user" required></select>
                                 </div>                             
 
                                 <div class="form-group">
                                     <label>Classification</label>
-                                    <select class="form-control" name="classification" id="selectAddUserPosition" style="width: 100%;">
+                                    <select class="form-control" name="classification reset-value" id="selectAddUserPosition" style="width: 100%;">
                                         <option selected disabled value="">-SELECT-</option>
                                         <option value="President">President</option>
                                         <option value="Finance General Manager">Finance General Manager</option>
@@ -109,7 +109,7 @@
     </div><!-- ADD MODAL END -->
 
     <!-- EDIT MODAL START -->
-    <div class="modal fade" id="modalEditUser">
+    <div class="modal fade show-modal" id="modalEditUser">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
@@ -124,19 +124,20 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
+                                    <input type="hidden" class="form-control reset-value" name="user_id" id="txtEditUserId">
                                     <div class="form-group">
                                         <label>Employee No.</label>
-                                        <input type="text" class="form-control" name="employee_no" id="txtEditUserEmployeeNo">
+                                        <input type="text" class="form-control reset-value" name="employee_no" id="txtEditUserEmployeeNo" readonly>
                                     </div>   
-                                    <input type="hidden" class="form-control" name="user_id" id="txtEditUserId">
+
                                     <div class="form-group">
                                         <label>Name</label>
                                         <select class="form-control sel-rapidx-user-list select2bs4" id="selectEditRapidxUser" name="rapidx_user"></select>
-                                    </div>                             
+                                    </div>     
 
                                     <div class="form-group">
                                         <label>Classification</label>
-                                        <select class="form-control" name="classification" id="selectEditUserClassification" style="width: 100%;">
+                                        <select class="form-control" name="classification reset-value" id="selectEditUserClassification" style="width: 100%;">
                                             <option selected disabled value="">-SELECT-</option>
                                             <option value="President">President</option>
                                             <option value="Finance General Manager">Finance General Manager</option>
@@ -191,7 +192,7 @@
 @section('js_content')
     <script type="text/javascript">
         let dataTableUsers;
-        let arrSelectedUsers = [];
+        let selectedEmployee;
 
         $(document).ready(function () {
             
@@ -238,6 +239,29 @@
                 ],
             }); // USERS DATATABLES END
 
+
+            $('.sel-rapidx-user-list').change(function (e) { 
+                e.preventDefault();
+                $.ajax({
+                    url: "load_rapidx_user_list",
+                    method: "get",
+                    data: {
+                        selectedEmployee : $(this).val()
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(JsonObject){
+                        let employeeNumber = JsonObject['user']
+                        $('#txtAddUserEmployeeNo').val(employeeNumber[0].employee_number)
+                        $('#txtEditUserEmployeeNo').val(employeeNumber[0].employee_number)
+                    },
+                    error: function(data, xhr, status){
+                        toastr.error('Data: ' + data + "\n" + "XHR: " + xhr + "\n" + "Status: " + status);
+                    }
+
+                });
+            });
             //============================== ADD USER ==============================
             // The AddUser(); function is inside public/js/my_js/UserApprover.js
             // after the submission, the ajax request will pass the formAddUser(form) of data(input) in the uri(add_user)
@@ -245,7 +269,6 @@
             $("#formAddUser").submit(function(event){
                 event.preventDefault(); // to stop the form submission
                 AddUser();
-                window.location.reload();
             });
 
             // VALIDATION(remove errors)
@@ -278,6 +301,10 @@
             $("#formEditUser").submit(function(event){
                 event.preventDefault();
                 EditUser();
+            });
+
+            $(".show-modal").on('hidden.bs.modal', function () {
+                $('.reset-value').val('');
             });
 
             //============================== CHANGE USER STATUS ==============================

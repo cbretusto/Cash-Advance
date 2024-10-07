@@ -27,9 +27,9 @@ class ViewPdfController extends Controller
     {
         session_start();
         $rapidx_user_id = $_SESSION['rapidx_user_id'];
-        $get_info = OnlineCashAdvance::where('id', $id)->get();
-        $get_requestor_esignature = ApproverEmailRecipient::with('requestor_esignature')->where('id', $id)->get();
-
+        $get_info = OnlineCashAdvance::with(['approver_email_recipients'])->where('id', $id)->get();
+        // return $get_info[0]->approver_email_recipients;
+        $get_requestor_esignature = ApproverEmailRecipient::with('requestor_esignature')->where('ca_id', $id)->get();
         $get_approver = ApproverEmailRecipient::with([
             'cash_advance_details',
             'supervisor_approver',
@@ -117,7 +117,7 @@ class ViewPdfController extends Controller
             $e_signature['president'] =  $get_esignature[0]->president_approver->employee_no;
         }
 
-        // return $requestor_esignature;
+        // return $get_approver;
         // $pdf = PDF::loadView('view_cash_advance', $data, $e_signature);
         $pdf = PDF::loadView('view_cash_advance',
             array('data' => $data,

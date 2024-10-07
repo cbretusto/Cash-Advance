@@ -167,15 +167,17 @@ function GetUserByIdToEdit(userId){
             user_id: userId
         },
         dataType: "json",
-        beforeSend: function(){    
+        beforeSend: function(){
         },
         success: function(response){
             let user = response['user'];
             if(user.length > 0){
-                $("#txtEditUserEmployeeNo").val(user[0].employee_no);
-                $("#selectEditRapidxUser").val(user[0].rapidx_id).trigger('change');
-                $("#selectEditUserClassification").val(user[0].classification).trigger('change');
-                console.log('GET',user[0].rapidx_user_details);
+                // setTimeout(() => {
+                    $("#txtEditUserEmployeeNo").val(user[0].employee_no);
+                    $('select[name="rapidx_user"]').val(user[0].rapidx_id).trigger('change');
+                    $("#selectEditUserClassification").val(user[0].classification).trigger('change');
+                    console.log('GET',user[0].rapidx_user_details);
+                // }, 500);
             }
             else{
                 toastr.warning('No User Record Found!');
@@ -253,20 +255,21 @@ function ChangeUserStatus(){
 function LoadRapidXUserList(cboElement)
 {
     let result = '<option value="">N/A</option>';
-
     $.ajax({
-
-    url: "load_rapidx_user_list",
-    method: "get",
-    dataType: "json",
-    beforeSend: function(){
+        url: "load_rapidx_user_list",
+        method: "get",
+        data: {
+            selectedEmployee : ''
+        },
+        dataType: "json",
+        beforeSend: function(){
             result = '<option value=""> -- Loading -- </option>';
             cboElement.html(result);
         },
         success: function(JsonObject){
             result = '';
             if(JsonObject['users'].length > 0){
-                result = '<option selected disabled>-- Select User Approver -- </option>';
+                result = '<option selected value="" disabled>-- Select User Approver -- </option>';
                 for(let index = 0; index < JsonObject['users'].length; index++){
                     let disabled = '';
 

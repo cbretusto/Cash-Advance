@@ -18,7 +18,7 @@
         }
 
         table.table thead th{
-            padding-top: 5px; 
+            padding-top: 5px;
             padding-bottom: 5px;
             padding-right: 5px;
             padding-left: 5px;
@@ -61,29 +61,29 @@
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="tabCashAdvance" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="tab_cash_advance_record" data-toggle="tab" href="#CashAdvanceRecord" role="tab" aria-controls="CashAdvanceRecord" aria-selected="false">Cash Advance Record</a>                                
+                                        <a class="nav-link active" id="tab_cash_advance_record" data-toggle="tab" href="#CashAdvanceRecord" role="tab" aria-controls="CashAdvanceRecord" aria-selected="false">Cash Advance Record</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="CashAdvanveApproved" data-toggle="tab" href="#CashAdvanceApproved" role="tab" aria-controls="CashAdvanceApproved" aria-selected="false">APPROVED</a>                                
+                                        <a class="nav-link" id="CashAdvanveApproved" data-toggle="tab" href="#CashAdvanceApproved" role="tab" aria-controls="CashAdvanceApproved" aria-selected="false">APPROVED</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="CashAdvanveLiquidated" data-toggle="tab" href="#CashAdvanceLiquidated" role="tab" aria-controls="CashAdvanceLiquidated" aria-selected="false">LIQUIDATED</a>                                
+                                        <a class="nav-link" id="CashAdvanveLiquidated" data-toggle="tab" href="#CashAdvanceLiquidated" role="tab" aria-controls="CashAdvanceLiquidated" aria-selected="false">LIQUIDATED</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="CashAdvanveDisapproved" data-toggle="tab" href="#CashAdvanceDisapproved" role="tab" aria-controls="CashAdvanceDisapproved" aria-selected="false">DISAPPROVED</a>                                
+                                        <a class="nav-link" id="CashAdvanveDisapproved" data-toggle="tab" href="#CashAdvanceDisapproved" role="tab" aria-controls="CashAdvanceDisapproved" aria-selected="false">DISAPPROVED</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" id="CashAdvanveCancelled" data-toggle="tab" href="#CashAdvanceCancelled" role="tab" aria-controls="CashAdvanceCancelled" aria-selected="false">CANCELLED</a>                                
+                                        <a class="nav-link" id="CashAdvanveCancelled" data-toggle="tab" href="#CashAdvanceCancelled" role="tab" aria-controls="CashAdvanceCancelled" aria-selected="false">CANCELLED</a>
                                     </li>
                                 </ul>
 
-                                <div class="tab-content table-responsive" id="tabCashAdvance">  
+                                <div class="tab-content table-responsive" id="tabCashAdvance">
                                     <div class="tab-pane fade show active" id="CashAdvanceRecord" role="tabpanel" aria-labelledby="tab_cash_advance_record">
-                                        <div style="float: right;">          
+                                        <div style="float: right;">
                                             <button class="btn btn-dark" data-toggle="modal" data-target="#modalAddCashAdvance" id="btnShowAddCashAdvanceModal" style="margin-top: 10px;"><i class="fa fa-plus"></i> Add Cash Advance</button>
                                         </div> <br><br>
                                         <div class="table-responsive"><br>
@@ -234,32 +234,32 @@
                             <div class="card ">
                                 <div class="card-header">
                                     <h4><strong><center>REQUEST FOR CASH ADVANCE</center></strong></h4>
-                                    <hr/> 
+                                    <hr/>
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-5 flex-column d-flex"> 
-                                            <label class="form-control-label">Cash Advance No.</label> 
-                                            <input type="text" id="txtAddCashAdvanceNo" name="ca_no" class="form-control" placeholder="Auto Generate" style="width:125px;" readonly> 
+                                        <div class="form-group col-sm-5 flex-column d-flex">
+                                            <label class="form-control-label">Cash Advance No.</label>
+                                            <input type="text" id="txtAddCashAdvanceNo" name="ca_no" class="form-control" placeholder="Auto Generate" style="width:125px;" readonly>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-sm-6"> 
-                                            <label class="form-control-label">Date Applied:</label> 
-                                            <input type="text" class="form-control" id="txtAddDateApplied" name="date_applied" value="{{ \Carbon\Carbon::now()->format('M. d, Y') }}" readonly> 
+                                        <div class="form-group col-sm-6">
+                                            <label class="form-control-label">Date Applied:</label>
+                                            <input type="text" class="form-control" id="txtAddDateApplied" name="date_applied" value="{{ \Carbon\Carbon::now()->format('M. d, Y') }}" readonly>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Date of Liquidation:</label> 
-                                            <input type="text" class="form-control" id="txtAddDateOfLiquidation" name="date_of_liquidation" value="{{ \Carbon\Carbon::now()->addMonth()->format('M. d, Y') }} " readonly> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Date of Liquidation:</label>
+                                            <input type="text" class="form-control" id="txtAddDateOfLiquidation" name="date_of_liquidation" value="{{ \Carbon\Carbon::now()->addMonth()->format('M. d, Y') }} " readonly>
                                         </div>
                                     </div>
 
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Employee No.</label> 
-                                            <input type="text" class="form-control" id="txtAddEmployeeNo" name="employee_no" placeholder="Enter your employee no." > 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Employee No.</label>
+                                            <input type="text" class="form-control" id="txtAddEmployeeNo" name="employee_no" placeholder="Enter your employee no." >
                                         </div>
 
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Mode of Payment:</label> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Mode of Payment:</label>
                                             <select class="form-control" id="selectAddModeOfPayment" name="mode_of_payment">
                                                 <option selected disabled value="">-SELECT-</option>
                                                 <option value="Payroll Account">Payroll Account</option>
@@ -269,45 +269,45 @@
                                     </div>
 
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Applicant Name:</label> 
-                                            <input type="text" class="form-control" id="txtAddApplicantName" name="applicant_name" placeholder="" readonly> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Applicant Name:</label>
+                                            <input type="text" class="form-control" id="txtAddApplicantName" name="applicant_name" placeholder="" readonly>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Payroll Account No.</label>
-                                            <input type="text" class="form-control" id="txtAddPayrollAccountNo" name="payroll_account_no" readonly> 
+                                            <input type="text" class="form-control" id="txtAddPayrollAccountNo" name="payroll_account_no" readonly>
                                         </div>
                                     </div>
 
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Position:</label> 
-                                            <input type="text" class="form-control" id="txtAddPosition" name="position" placeholder="" readonly> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Position:</label>
+                                            <input type="text" class="form-control" id="txtAddPosition" name="position" placeholder="" readonly>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Gcash Account No.</label>
                                             <input type="text" id="txtAddGcashAccountNo" name="gcash_account_no" placeholder="0000-000-0000" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" disabled="disabled">
                                         </div>
                                     </div>
 
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Official Station:</label> 
-                                            <input type="text" class="form-control" id="txtAddOfficialStation" name="official_station" placeholder="" readonly> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Official Station:</label>
+                                            <input type="text" class="form-control" id="txtAddOfficialStation" name="official_station" placeholder="" readonly>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Local No.</label>
-                                            <div class="input-group"> 
+                                            <div class="input-group">
                                                 <select class="form-control select2bs4 selectLocalNo" id="selectAddLocalNo" name="local_no"></select>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="form-group"> 
-                                                <label class="form-control-label">Amount of Cash Advance:</label> 
-                                                <div class="input-group"> 
+                                            <div class="form-group">
+                                                <label class="form-control-label">Amount of Cash Advance:</label>
+                                                <div class="input-group">
                                                     <input type="text" id="txtAddAmountOfCashAdvance" name="amount_of_ca" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6" disabled="disabled">
                                                     &nbsp;-&nbsp;
                                                     <input type="text" id="txtAddConvertToWord" name="ca_convert_to_word" placeholder="" class="form-control" style="width:300px;" readonly>
@@ -330,7 +330,7 @@
                                     </div>
                                     <hr>
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-12"> 
+                                        <div class="form-group col-sm-12">
                                             <label class="col-form-label">Purpose:</label>
                                             <input type="hidden" class="form-control" name="purpose" rows="3" >
                                             <textarea type="text" class="form-control" id="txtAddPurpose" name="purpose" placeholder="Remark" maxlength="255"></textarea>
@@ -338,67 +338,67 @@
                                     </div>
                                     <hr>
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Requested By:</label> 
-                                            <input type="text" class="form-control" id="txtAddRequestedBy" name="requested_by" placeholder="Name of requestor" readonly> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Requested By:</label>
+                                            <input type="text" class="form-control" id="txtAddRequestedBy" name="requested_by" placeholder="Name of requestor" readonly>
                                             {{-- <input type="text" class="form-control" id="txtAddRapidxUser" name="rapidx_user_id">  --}}
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Checked By: (OPTIONAL)</label>
-                                            <div class="input-group"> 
+                                            <div class="input-group">
                                                 <select class="form-control select2bs4 selectAddSupervisor" id="selectAddSupervisor" name="supervisor"></select>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Approved By:</label>
-                                            <div class="input-group"> 
-                                                <select class="form-control select2bs4 selectAddSectHead" id="selectAddSectionHead" name="sect_head"></select>
-                                                <select class="form-control select2bs4 selectAddDeptHead" id="selectAddDepartmentHead" name="dept_head"></select>
-                                            </div> 
+                                            <div class="input-group">
+                                                <select class="form-control select2bs4 selectAddSectHead" id="selectAddSectionHead" name="sect_head" required></select>
+                                                <select class="form-control select2bs4 selectAddDeptHead" id="selectAddDepartmentHead" name="dept_head" required></select>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-12"> 
+                                        <div class="col-sm-12">
                                             <label class="form-control-label">Attachment:</label> <br>
-                                            <input type="file" class="" id="txtAddFile" name="uploaded_file" accept=".xlsx, .xls, .csv, application/pdf" style="width:100%;"> 
+                                            <input type="file" class="" id="txtAddFile" name="uploaded_file" accept=".xlsx, .xls, .csv, application/pdf" style="width:100%;">
                                         </div>
                                     </div>
                                     <hr>
                                     <h5><strong><center>For Accounting Department Only</center></strong></h5><br>
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Previous Advance:</label> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Previous Advance:</label>
                                             <input type="text" class="form-control" id="txtAddPreviousAdvance" name="previous_advance" readonly>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Payment Released By:</label>
                                             {{-- <div class="input-group" style="pointer-events:none; visibility: hidden">  --}}
-                                                <div class="input-group" style="pointer-events: none;"> 
+                                                <div class="input-group" style="pointer-events: none;">
                                                 <select class="form-control select2bs4 selectAddPaymentReleasedBy" id="selectAddPaymentReleasedBy" name="payment_released_by"></select>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Noted By:</label>
                                             {{-- <div class="input-group"> --}}
-                                            <div class="input-group" style="pointer-events: none;">  
+                                            <div class="input-group" style="pointer-events: none;">
                                                 <select class="form-control select2bs4 selectAddTreasuryHead" id="selectAddTreasuryHead" name="treasury_head"></select>
                                                 <select class="form-control select2bs4 selectAddFinanceGeneralManager" id="selectAddFinanceGeneralManager" name="fin_gen_manager"></select>
-                                            </div> 
+                                            </div>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <label class="form-control-label">Date:</label> 
-                                            <input type="date" class="form-control" id="txtAddDate" name="date" readonly> 
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <label class="form-control-label">Date:</label>
+                                            <input type="date" class="form-control" id="txtAddDate" name="date" readonly>
                                         </div>
                                     </div>
                                     <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> 
-                                            <div class="input-group" style="display:none;">  
+                                        <div class="form-group col-sm-6 flex-column d-flex">
+                                            <div class="input-group" style="display:none;">
                                                 <select class="form-control select2bs4 selectAddPresident" id="selectAddPresident" name="president"></select>
                                             </div>
                                         </div>
@@ -412,11 +412,11 @@
                         <button type="submit" id="btnAddCashAdvance" class="btn btn-dark"><i id="iBtnAddCashAdvanceIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div><!-- ADD MODAL END -->
-    
+
     <!-- EDIT MODAL START -->
     <div class="modal fade" id="modalEditCashAdvance">
         <div class="modal-dialog modal-xl">
@@ -436,34 +436,34 @@
                                 <div class="card ">
                                     <div class="card-header">
                                         <h4><strong><center>REQUEST FOR CASH ADVANCE</center></strong></h4>
-                                        <hr> 
+                                        <hr>
                                         <div class="row justify-content-between text-left">
                                             <input type="hidden" class="form-control" name="cash_advance_id" id="txtEditCashAdvanceId">
-                                            <div class="form-group col-sm-5 flex-column d-flex"> 
-                                                <label class="form-control-label">Cash Advance No.</label> 
-                                                <input type="text" id="txtEditCashAdvanceNo" name="ca_no" class="form-control" style="width:125px;" readonly>  
+                                            <div class="form-group col-sm-5 flex-column d-flex">
+                                                <label class="form-control-label">Cash Advance No.</label>
+                                                <input type="text" id="txtEditCashAdvanceNo" name="ca_no" class="form-control" style="width:125px;" readonly>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-group col-sm-6"> 
-                                                <label class="form-control-label">Date Applied:</label> 
-                                                <input type="text" class="form-control" id="txtEditDateApplied" name="date_applied" value="<?php echo date('M. d, Y'); ?>" readonly> 
+                                            <div class="form-group col-sm-6">
+                                                <label class="form-control-label">Date Applied:</label>
+                                                <input type="text" class="form-control" id="txtEditDateApplied" name="date_applied" value="<?php echo date('M. d, Y'); ?>" readonly>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Date of Liquidation:</label> 
-                                                <input type="text" class="form-control" id="txtEditDateOfLiquidation" name="date_of_liquidation" value="{{ \Carbon\Carbon::now()->addMonth()->format('M. d, Y') }} " readonly> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Date of Liquidation:</label>
+                                                <input type="text" class="form-control" id="txtEditDateOfLiquidation" name="date_of_liquidation" value="{{ \Carbon\Carbon::now()->addMonth()->format('M. d, Y') }} " readonly>
                                             </div>
                                         </div>
 
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Employee No.</label> 
-                                                <input type="text" class="form-control" id="txtEditEmployeeNo" name="employee_no" placeholder="Enter your employee no." > 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Employee No.</label>
+                                                <input type="text" class="form-control" id="txtEditEmployeeNo" name="employee_no" placeholder="Enter your employee no." >
                                             </div>
 
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Mode of Payment:</label> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Mode of Payment:</label>
                                                 <select class="form-control" id="selectEditModeOfPayment" name="mode_of_payment">
                                                     <option selected disabled value="">-SELECT-</option>
                                                     <option value="Payroll Account">Payroll Account</option>
@@ -473,47 +473,47 @@
                                         </div>
 
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Applicant Name:</label> 
-                                                <input type="text" class="form-control" id="txtEditApplicantName" name="applicant_name" placeholder="" readonly> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Applicant Name:</label>
+                                                <input type="text" class="form-control" id="txtEditApplicantName" name="applicant_name" placeholder="" readonly>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Payroll Account No.</label>
-                                                <input type="text" class="form-control" id="txtEditPayrollAccountNo" name="payroll_account_no" placeholder="" readonly> 
+                                                <input type="text" class="form-control" id="txtEditPayrollAccountNo" name="payroll_account_no" placeholder="" readonly>
                                             </div>
                                         </div>
 
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Position:</label> 
-                                                <input type="text" class="form-control" id="txtEditPosition" name="position" placeholder="" readonly> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Position:</label>
+                                                <input type="text" class="form-control" id="txtEditPosition" name="position" placeholder="" readonly>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Gcash Account No.</label>
                                                 <input type="text" id="txtEditGcashAccountNo" name="gcash_account_no" placeholder="0000-000-0000" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11">
                                             </div>
                                         </div>
 
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Official Station:</label> 
-                                                <input type="text" class="form-control" id="txtEditOfficialStation" name="official_station" placeholder="" readonly> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Official Station:</label>
+                                                <input type="text" class="form-control" id="txtEditOfficialStation" name="official_station" placeholder="" readonly>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Local No.</label>
-                                                <div class="input-group"> 
+                                                <div class="input-group">
                                                     <select class="form-control select2bs4 selectLocalNo" id="selectEditLocalNo" name="local_no"></select>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <div class="form-group"> 
-                                                    <label class="form-control-label">Amount of Cash Advance:</label> 
-                                                    <div class="input-group"> 
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Amount of Cash Advance:</label>
+                                                    <div class="input-group">
                                                         <input type="text" id="txtEditAmountOfCashAdvance" name="amount_of_ca" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="6">
                                                         &nbsp;-&nbsp;
-                                                        <input type="text" id="txtEditConvertToWord" name="ca_convert_to_word" placeholder="" class="form-control" style="width:300px;" readonly> 
+                                                        <input type="text" id="txtEditConvertToWord" name="ca_convert_to_word" placeholder="" class="form-control" style="width:300px;" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -533,7 +533,7 @@
                                         </div>
                                         <hr>
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-12"> 
+                                            <div class="form-group col-sm-12">
                                                 <label class="col-form-label">Purpose:</label>
                                                 <input type="hidden" class="form-control" name="purpose" rows="3" >
                                                 <textarea type="text" class="form-control" id="txtEditPurpose" name="purpose" placeholder="Remark" maxlength="255"></textarea>
@@ -541,32 +541,32 @@
                                         </div>
                                         <hr>
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Requested By:</label> 
-                                                <input type="text" class="form-control" id="txtEditRequestedBy" name="requested_by" placeholder="Name of requestor" readonly> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Requested By:</label>
+                                                <input type="text" class="form-control" id="txtEditRequestedBy" name="requested_by" placeholder="Name of requestor" readonly>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Checked By:</label>
-                                                <div class="input-group"> 
+                                                <div class="input-group">
                                                     <select class="form-control select2bs4 selectEditSupervisor" id="selectEditSupervisor" name="supervisor"></select>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Approved By:</label>
-                                                <div class="input-group"> 
-                                                    <select class="form-control select2bs4 selectEditSectHead" id="selectEditSectionHead" name="sect_head"></select>
-                                                    <select class="form-control select2bs4 selectEditDeptHead" id="selectEditDepartmentHead" name="dept_head"></select>
-                                                </div> 
+                                                <div class="input-group">
+                                                    <select class="form-control select2bs4 selectEditSectHead" id="selectEditSectionHead" name="sect_head" required></select>
+                                                    <select class="form-control select2bs4 selectEditDeptHead" id="selectEditDepartmentHead" name="dept_head" required></select>
+                                                </div>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-sm-12"> 
+                                            <div class="col-sm-12">
                                                 <label class="form-control-label">Attachment:</label> <br>
                                                 <input type="text" class="form-control" name="uploaded_file" id="txtEditReuploadFile">
-                                                <input type="file" class="d-none" id="txtEditFile" name="uploaded_file" accept=".xlsx, .xls, .csv, application/pdf" style="width:100%;"> 
+                                                <input type="file" class="d-none" id="txtEditFile" name="uploaded_file" accept=".xlsx, .xls, .csv, application/pdf" style="width:100%;">
                                             </div>
                                         </div>
                                         <div class="form-group form-check">
@@ -576,34 +576,34 @@
                                         <hr>
                                         <h5><strong><center>For Accounting Department Only</center></strong></h5><br>
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Previous Advance:</label> 
-                                                <input type="text" class="form-control" id="txtEditPreviousAdvance" name="previous_advance" readonly>                                            
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Previous Advance:</label>
+                                                <input type="text" class="form-control" id="txtEditPreviousAdvance" name="previous_advance" readonly>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Payment Released By:</label>
-                                                <div class="input-group" style="pointer-events: none;"> 
+                                                <div class="input-group" style="pointer-events: none;">
                                                     <select class="form-control select2bs4 selectEditPaymentReleasedBy" id="selectEditPaymentReleasedBy" name="payment_released_by"></select>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Noted By:</label>
-                                                <div class="input-group" style="pointer-events: none;"> 
+                                                <div class="input-group" style="pointer-events: none;">
                                                     <select class="form-control select2bs4 selectEditTreasuryHead" id="selectEditTreasuryHead" name="treasury_head"></select></select>
                                                     <select class="form-control select2bs4 selectEditFinanceGeneralManager" id="selectEditFinanceGeneralManager" name="fin_gen_manager"></select>
-                                                </div> 
+                                                </div>
                                             </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <label class="form-control-label">Date:</label> 
-                                                <input type="date" class="form-control" id="txtEditDate" name="date" readonly> 
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label">Date:</label>
+                                                <input type="date" class="form-control" id="txtEditDate" name="date" readonly>
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> 
-                                                <div class="input-group" style="display:none;">  
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <div class="input-group" style="display:none;">
                                                     <select class="form-control select2bs4 selectEditPresident" id="selectEditPresident" name="president"></select>
                                                 </div>
                                             </div>
@@ -618,7 +618,7 @@
                         <button type="submit" id="btnEditCashAdvance" class="btn btn-dark"><i id="iBtnEditCashAdvanceIcon" class="fa fa-check"></i> Save</button>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div><!-- EDIT MODAL END -->
@@ -639,9 +639,9 @@
                         <label id="lblChangeUserApproverStatLabel"></label>
                         <input type="hidden" name="cash_advance_id" id="approvedCashAdvanceUserId">
                         <input type="hidden" name="status" id="approvedCashAdvanceUserStat">
-                        <div class="row">			
+                        <div class="row">
                             <div class="row justify-content-between text-left">
-                                <div class="form-group col-sm-12"> 
+                                <div class="form-group col-sm-12">
                                     <h5> Are you sure you want to approve the Cash Advance request? </h5>
                                 </div>
                             </div>
@@ -669,9 +669,9 @@
                 <form method="post" id="formDisapproveCashAdvanceRemark">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">			
+                        <div class="row">
                             <div class="row justify-content-between text-left">
-                                <div class="form-group col-sm-12"> 
+                                <div class="form-group col-sm-12">
                                     <h5> Are you sure you want to disapprove the Cash Advance request? </h5>
                                     <label class="col-form-label">Remark:</label>
                                     <input type="hidden" name="cash_advance_id" id="disapprovedCashAdvanceId">
@@ -704,11 +704,11 @@
                 <form method="post" id="formAddPresident">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">			
+                        <div class="row">
                             <div class="row justify-content-between text-left">
                                 <input type="hidden" name="president_id" id="addPresidentId">
                                 <input type="hidden" name="cash_advance_id" id="addPresidentCashAdvanceId">
-                                <div class="form-group col-sm-12"> 
+                                <div class="form-group col-sm-12">
                                     <h5> Are you sure you want to add the President? </h5>
                                 </div>
                             </div>
@@ -736,11 +736,11 @@
                 <form method="post" id="formPreviousAdvance">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">			
-                            <div class="form-group col-sm-12"> 
+                        <div class="row">
+                            <div class="form-group col-sm-12">
                                 <label class="col-form-label">Previous Advance:</label>
                                 <input type="hidden" name="cash_advance_id" id="cashierPreviousAdvanceId">
-                                <input type="text" class="form-control" id="txtPreviousAdvance" name="previous_advance">                                            
+                                <input type="text" class="form-control" id="txtPreviousAdvance" name="previous_advance">
                                 <input type="hidden" class="form-control" id="txtPreviousAdvanceRemarks" name="previous_advance_remarks">
                             </div>
                         </div>
@@ -768,12 +768,12 @@
                 <form method="post" id="formDateCashReceived">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">			
-                            
-                            <div class="form-group col-sm-12"> 
+                        <div class="row">
+
+                            <div class="form-group col-sm-12">
                                 <label class="col-form-label">Date of Cash Received:</label>
                                 <input type="hidden" name="cash_advance_id" id="dateId">
-                                <input type="date" class="form-control" id="txtDate" name="date" required> 
+                                <input type="date" class="form-control" id="txtDate" name="date" required>
                             </div>
                         </div>
                     </div>
@@ -785,7 +785,7 @@
             </div>
         </div>
     </div><!-- DATE CASH RECEIVED MODAL END -->
-    
+
     <!-- DATE LIQUIDATED MODAL START -->
     <div class="modal fade" id="modalDateLiquidated">
         <div class="modal-dialog">
@@ -799,13 +799,13 @@
                 <form method="post" id="formDateLiquidated">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">			
-                            
-                            <div class="form-group col-sm-12"> 
+                        <div class="row">
+
+                            <div class="form-group col-sm-12">
                                 <label class="col-form-label">Date Liquidated:</label>
                                 <input type="hidden" name="cash_advance_id" id="dateliquidatedId">
                                 {{-- <input type="text" class="form-control" id="txtDateLiquidated" name="date_liquidated" value="{{ \Carbon\Carbon::now()->format('M. d, Y') }} " readonly>  --}}
-                                <input type="date" class="form-control" id="txtDateLiquidated" name="date_liquidated" required> 
+                                <input type="date" class="form-control" id="txtDateLiquidated" name="date_liquidated" required>
                             </div>
                         </div>
                     </div>
@@ -831,11 +831,11 @@
                 <form method="post" id="formCancel">
                     @csrf
                     <div class="modal-body">
-                        <div class="row">			
-                            
+                        <div class="row">
+
                                 <input type="hidden" name="cash_advance_id" id="cancelCAId">
                                 <label class="col-form-label">Remarks: </label>
-                                
+
                                 {{-- <input type="text" class="form-control" id="txtDateLiquidated" name="date_liquidated" value="{{ \Carbon\Carbon::now()->format('M. d, Y') }} " readonly>  --}}
                                 {{-- <input type="date" class="form-control" id="txtDateLiquidated" name="date_liquidated" required>  --}}
 
@@ -860,7 +860,7 @@
         let arrSelectedCashAdvance = [];
 
         $(document).ready(function () {
-            
+
             bsCustomFileInput.init();
             //Initialize Select2 Elements
             $('.select2').select2();
@@ -1033,7 +1033,7 @@
                     alert('Cash Advance System does not accept below 10,000 pesos.')
                 }else{
                     AddCashAdvance();
-                    dataTableCashAdvance.draw(); // reload the tables after insertion            
+                    dataTableCashAdvance.draw(); // reload the tables after insertion
                 }
             });
 
@@ -1094,14 +1094,14 @@
                 // $("#txtAddPayrollAccountNo").attr('disabled', 'disabled');
                 // $("#txtAddGcashAccountNo").attr('disabled', 'disabled');
             });
-            
+
             // ============================== AUTO FILL APPROVERS (CASHIER TREASURY HEAD, FIN. GEN. MANAGER) ==============================
             $('#btnShowAddCashAdvanceModal').on('click', function(){
                 $.ajax({
                     url: "get_noted_by",
                     method: "get",
                     dataType: "json",
-                    beforeSend: function(){    
+                    beforeSend: function(){
                     },
                     success: function(response){
                         // console.log(response);
@@ -1119,7 +1119,7 @@
                     url: "get_noted_by",
                     method: "get",
                     dataType: "json",
-                    beforeSend: function(){    
+                    beforeSend: function(){
                     },
                     success: function(response){
                         // console.log(response);
@@ -1279,7 +1279,7 @@
                 $('.radioBtn').on('click', function(){
                     $('#txtAddAmountOfCashAdvance').val('');
                     $('#txtAddConvertToWord').val('');
-                    if($('.peso').is(":checked")){  
+                    if($('.peso').is(":checked")){
                         currency = $('.peso').val();
                         // console.log(currency);
                     }
@@ -1289,7 +1289,7 @@
                     }
                     if($('.yen').is(":checked")){
                         currency = $('.yen').val();
-                        // console.log(currency); 
+                        // console.log(currency);
                     }
                 });
 
@@ -1313,17 +1313,17 @@
             // actionEditCashAdvance is generated by datatables and open the modalEditCashAdvance(modal) to collect the id of the specified rows
             $(document).on('click', '.actionEditCashAdvance', function(){
                 // the cash_advance-id(attr) is inside the datatables of CashAdvanceController that will be use to collect the cash_advance-id
-                let cash_advanceId = $(this).attr('cash_advance-id'); 
+                let cash_advanceId = $(this).attr('cash_advance-id');
 
-                // after clicking the actionEditCashAdvance(button) the cash_advanceId will be pass to the txtEditCashAdvanceId(input=hidden) and when the form is submitted this 
+                // after clicking the actionEditCashAdvance(button) the cash_advanceId will be pass to the txtEditCashAdvanceId(input=hidden) and when the form is submitted this
                 // will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the report
                 $("#txtEditCashAdvanceId").val(cash_advanceId);
 
-                // COLLECT THE cash_advanceId AND PASS TO INPUTS, BASED ON THE CLICKED ROWS 
-                    //GetCashAdvanceByIdToEdit() function is inside CashAdvance.js and pass the cash_advanceId as an argument when passing the ajax that will be use to query 
-                    // the cash_advance-id of get_cash_advance_by_id() method inside CashAdvanceController and pass the fetched report based on that query as $cash_advance(variable) 
+                // COLLECT THE cash_advanceId AND PASS TO INPUTS, BASED ON THE CLICKED ROWS
+                    //GetCashAdvanceByIdToEdit() function is inside CashAdvance.js and pass the cash_advanceId as an argument when passing the ajax that will be use to query
+                    // the cash_advance-id of get_cash_advance_by_id() method inside CashAdvanceController and pass the fetched report based on that query as $cash_advance(variable)
                     // to pass the values in the inputs of modalEditCashAdvance and also to validate the fetched values, inside GetCashAdvanceByIdToEdit under CashAdvance.js
-                GetCashAdvanceByIdToEdit(cash_advanceId); 
+                GetCashAdvanceByIdToEdit(cash_advanceId);
 
                  // READ ONLY (Mode of Payment)
                 // $("#txtEditPayrollAccountNo").attr('disabled', 'disabled');
@@ -1424,7 +1424,7 @@
                 $('.radioBtn').on('click', function(){
                     $('#txtEditAmountOfCashAdvance').val('');
                     $('#txtEditConvertToWord').val('');
-                    if($('.peso').is(":checked")){  
+                    if($('.peso').is(":checked")){
                         currency = $('.peso').val();
                         // console.log(currency);
                     }
@@ -1434,7 +1434,7 @@
                     }
                     if($('.yen').is(":checked")){
                         currency = $('.yen').val();
-                        // console.log(currency); 
+                        // console.log(currency);
                     }
                 })
 
@@ -1473,7 +1473,7 @@
 
                 $("#disapprovedCashAdvanceStat").val(userApproverStat); // collect the user status id the default is 2, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
                 $("#disapprovedCashAdvanceId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the userId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                $("#classification_remarks").val(remarks); // after clicking the actionDisapproveRemark(button) the userId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user            
+                $("#classification_remarks").val(remarks); // after clicking the actionDisapproveRemark(button) the userId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
             });
 
             $("#formDisapproveCashAdvanceRemark").submit(function(event){
@@ -1484,9 +1484,9 @@
             // ============================== ADD PRESIDENT BUTTON ==============================
             // actionApproveRemark is generated by datatables and open the modalApproveRemark(modal) to collect and change the id & status of the specified rows
             $(document).on('click', '.actionAddPresident', function(){
-                let cash_advance_id = $(this).attr('cash_advance-id'); 
+                let cash_advance_id = $(this).attr('cash_advance-id');
 
-             // after clicking the actionEditCashAdvance(button) the cash_advanceId will be pass to the txtEditCashAdvanceId(input=hidden) and when the form is submitted this 
+             // after clicking the actionEditCashAdvance(button) the cash_advanceId will be pass to the txtEditCashAdvanceId(input=hidden) and when the form is submitted this
                 // will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the report
                 $("#addPresidentCashAdvanceId").val(cash_advance_id);
             });
@@ -1495,7 +1495,7 @@
             // after the submission, the ajax request will pass the formChangeUserStat(form) of data(input) in the uri(change_user_stat)
             // then the controller will handle that uri to use specific method called change_user_stat() inside UserController
             $("#formAddPresident").submit(function(event){
-                event.preventDefault(); 
+                event.preventDefault();
                 AddPresident();
             });
 
@@ -1505,7 +1505,7 @@
                 ca_auto_generate = $(this).val();
                 var currency = "";
 
-                if($('.peso').is(":checked")){  
+                if($('.peso').is(":checked")){
                     currency = $('.peso').val();
                     // console.log(currency);
                 }
@@ -1515,18 +1515,18 @@
                 }
                 if($('.yen').is(":checked")){
                     currency = $('.yen').val();
-                    // console.log(currency); 
+                    // console.log(currency);
                 }
 
                 $.ajax({
                     url: "get_ca_no_records",
                     method: "get",
                     data: {
-                    ca_auto_generate: ca_auto_generate, 
+                    ca_auto_generate: ca_auto_generate,
                     currency: currency,
                     },
                     dataType: "json",
-                    beforeSend: function(){    
+                    beforeSend: function(){
                     },
                     success: function(response){
                         // console.log(response);
@@ -1553,7 +1553,7 @@
                     url: "get_president",
                     method: "get",
                     dataType: "json",
-                    beforeSend: function(){    
+                    beforeSend: function(){
                     },
                     success: function(response){
                         // console.log(response);
@@ -1573,7 +1573,7 @@
                     url: "get_president",
                     method: "get",
                     dataType: "json",
-                    beforeSend: function(){    
+                    beforeSend: function(){
                     },
                     success: function(response){
                         // console.log(response);
@@ -1594,11 +1594,11 @@
                 let cash_AdvanceId = $(this).attr('cash_advance-id'); // the cash_advance-id(attr) is inside the datatables of CashAdvanceController that will be use to collect the cash_advance-id
                 let remarks = $(this).attr('remarks'); // the cash_advance-id(attr) is inside the datatables of CashAdvanceController that will be use to collect the cash_advance-id
 
-                GetPreviousAdvance(cash_AdvanceId); 
+                GetPreviousAdvance(cash_AdvanceId);
 
                 // $("#cashierPreviousAdvanceStat").val(userApproverStat); // collect the user status id the default is 2, this will be use to change the user status when the formApproveCashAdvanceRemark(form) is submitted
                 $("#cashierPreviousAdvanceId").val(cash_AdvanceId); // after clicking the actionApproveRemark(button) the userId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
-                $("#txtPreviousAdvanceRemarks").val(remarks); // after clicking the actionDisapproveRemark(button) the userId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user            
+                $("#txtPreviousAdvanceRemarks").val(remarks); // after clicking the actionDisapproveRemark(button) the userId will be pass to the approvedCashAdvanceUserId(input=hidden) and when the form is submitted this will be pass to ajax and collect cash_advance-id that will be use to query the cash_advance-id in the CashAdvanceController to update the status of the user
                 $("#txtPreviousAdvance").prop('required', true);
             });
 
@@ -1645,7 +1645,7 @@
                         url: "get_rapidx_user",
                         method: "get",
                         dataType: "json",
-                        beforeSend: function(){    
+                        beforeSend: function(){
                         },
                         success: function(response){
                             let result = response['get_user'];
@@ -1669,8 +1669,8 @@
 
              // ============================== DATE LIQUIDATED ==============================
             $(document).on('click', '.actionDateLiquidated', function(){
-                let cash_AdvanceId = $(this).attr('cash_advance-id'); 
-                $("#dateliquidatedId").val(cash_AdvanceId); 
+                let cash_AdvanceId = $(this).attr('cash_advance-id');
+                $("#dateliquidatedId").val(cash_AdvanceId);
             });
 
             $("#formDateLiquidated").submit(function(event){
