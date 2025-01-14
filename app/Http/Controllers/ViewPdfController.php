@@ -23,11 +23,11 @@ use App\RapidXUser;
 
 class ViewPdfController extends Controller
 {
-    public function view_pdf($id)
-    {
+    public function view_pdf($id){
         session_start();
-        $rapidx_user_id = $_SESSION['rapidx_user_id'];
-        $get_info = OnlineCashAdvance::with(['approver_email_recipients'])->where('id', $id)->get();
+
+        $rapidx_department_id = $_SESSION['rapidx_department_id'];
+        $get_info = OnlineCashAdvance::with(['approver_email_recipients','cash_advance_rapidx_account_info'])->where('id', $id)->get();
         // return $get_info[0]->approver_email_recipients;
         $get_requestor_esignature = ApproverEmailRecipient::with('requestor_esignature')->where('ca_id', $id)->get();
         $get_approver = ApproverEmailRecipient::with([
@@ -56,7 +56,15 @@ class ViewPdfController extends Controller
             'president_approver',
             'treasury_head_approver',
             'finance_general_manager_approver',
-        ])->where('ca_id', $id)->get();
+        ]
+        )->where('ca_id', $id)
+        ->get();
+
+        if($rapidx_department_id == 25){
+            $account_no = $get_info[0]->payroll_account_no;
+        }else{
+            $account_no = '****'.substr($get_info[0]->payroll_account_no, -4);
+        }
 
         //Chan April 11, 2022
         $data = [
@@ -67,7 +75,7 @@ class ViewPdfController extends Controller
             'employee_no'         => $get_info[0]->employee_no,
             'mode_of_payment'     => $get_info[0]->mode_of_payment,
             'applicant_name'      => $get_info[0]->applicant_name,
-            'payroll_account_no'  => $get_info[0]->payroll_account_no,
+            'payroll_account_no'  => $account_no,
             'position'            => $get_info[0]->position,
             'gcash_account_no'    => $get_info[0]->gcash_account_no,
             'official_station'    => $get_info[0]->official_station,

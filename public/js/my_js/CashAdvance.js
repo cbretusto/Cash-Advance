@@ -1,3 +1,8 @@
+function TextareaAutoHeight(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+}
+
 //============================== ADD CASH ADVANCE ==============================
 function AddCashAdvance(){
     toastr.options = {
@@ -237,6 +242,8 @@ function AddCashAdvance(){
                     $("#formAddCashAdvance")[0].reset();
                     toastr.success('Succesfully Saved!');
                     dataTableCashAdvance.draw(); // reload the tables after insertion
+                }if(response['result'] == 2){
+                    alert('Employee No: '+$('#txtAddEmployeeNo').val()+' \nPayroll account is not found! \nPlease contact the Finance Department regarding this matter. \nThank You! ');
                 }else{
                     alert('Cash Advance No. "'+$("#txtAddCashAdvanceNo").val()+'" is already exist! '+"\n\n"+' Please refresh the browser to process the request once again.')
                 }
@@ -560,13 +567,16 @@ function EditCashAdvance(){
                     $("#selectEditFinanceGeneralManager").attr('title', response['error']['finance_general_manager']);
                 }
             }else{
-                if(response['result'] == 1){
+                if(response['result'] == 0){
+                    alert('Employee No: '+$('#txtAddEmployeeNo').val()+' \nPayroll account is not found! \nPlease contact the Finance Department regarding this matter. \nThank You! ');
+                }if(response['result'] == 1){
                     $("#modalEditCashAdvance").modal('hide');
                     $("#formEditCashAdvance")[0].reset();
 
                     dataTableCashAdvance.draw();
                     toastr.success('Succesfully Saved!');
-                }else{
+                }
+                else{
                     toastr.warning(response['tryCatchError']);
                 }
             }
@@ -619,13 +629,13 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
             let cash_advances_supervisor_approver = response['cash_advances_supervisor_approver'];
 
             if(cash_advances.length > 0){
+                $('#selectEditModeOfPayment').attr('disabled', false)
                 $("#txtEditCashAdvanceNo")      .val(cash_advances[0].ca_no);
                 $("#txtEditDateApplied")        .val(cash_advances[0].date_applied);
                 $("#txtEditDateOfLiquidation")  .val(cash_advances[0].date_of_liquidation);
                 $("#txtEditEmployeeNo")         .val(cash_advances[0].employee_no);
                 $("#selectEditModeOfPayment")   .val(cash_advances[0].mode_of_payment).trigger('change');
                 $("#txtEditApplicantName")      .val(cash_advances[0].applicant_name);
-                $("#txtEditPayrollAccountNo")   .val(cash_advances[0].payroll_account_no);
                 $("#txtEditPosition")           .val(cash_advances[0].position);
                 $("#txtEditGcashAccountNo")     .val(cash_advances[0].gcash_account_no);
                 $("#txtEditOfficialStation")    .val(cash_advances[0].official_station);
@@ -657,11 +667,16 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
                     console.log('yen')
                 }
 
+                setTimeout(() => {
+                    TextareaAutoHeight(document.getElementById('txtEditPurpose'))                    
+                }, 500);
+
                 $('#modalEditCashAdvance').on('hide', function() {
                     window.location.reload();
                 });
             }
             else{
+                $('#selectEditModeOfPayment').attr('disbaled', true)
                 toastr.warning('No Record Found!');
             }
         },

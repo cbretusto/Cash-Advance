@@ -45,17 +45,18 @@ class CreateOnlineCashAdvancesTable extends Migration
                         5-Approval of Fin. Gen. Manager, 
                         6-Approval of President, 
                         7-Approved, 
-                        8-Sect Head Disapproved,
-                        9-Dept Head Disapproved,
-                        10-Cashier Disapproved,
-                        11-Treasury Head Disapproved,
-                        12-Fin. Gen. Manager Disapproved,
-                        13-President Disapproved';
+                        8-Supervisor Disapproved,
+                        9-Sect Head Disapproved,
+                        10-Dept Head Disapproved,
+                        11-Cashier Disapproved,
+                        12-Treasury Head Disapproved,
+                        13-Fin. Gen. Manager Disapproved,
+                        14-President Disapproved';
             $table->unsignedTinyInteger('logdel')->default(0)->comment = '0-show,1-hide';
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

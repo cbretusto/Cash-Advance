@@ -22,5 +22,10 @@ class OnlineCashAdvance extends Model
     public function payroll_account(){
         return $this->hasOne(PayrollAccountNo::class, 'EmpNo', 'id');
     }
+
+    public function cash_advance_rapidx_account_info(){
+        return $this->hasOne(RapidXUser::class, 'employee_number', 'employee_no');
+    }
+
 }
 

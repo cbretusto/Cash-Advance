@@ -260,7 +260,7 @@
 
                                         <div class="form-group col-sm-6 flex-column d-flex">
                                             <label class="form-control-label">Mode of Payment:</label>
-                                            <select class="form-control" id="selectAddModeOfPayment" name="mode_of_payment">
+                                            <select class="form-control" id="selectAddModeOfPayment" name="mode_of_payment" disabled>
                                                 <option selected disabled value="">-SELECT-</option>
                                                 <option value="Payroll Account">Payroll Account</option>
                                                 <option value="GCash">GCash</option>
@@ -464,7 +464,7 @@
 
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label">Mode of Payment:</label>
-                                                <select class="form-control" id="selectEditModeOfPayment" name="mode_of_payment">
+                                                <select class="form-control" id="selectEditModeOfPayment" name="mode_of_payment" disabled>
                                                     <option selected disabled value="">-SELECT-</option>
                                                     <option value="Payroll Account">Payroll Account</option>
                                                     <option value="GCash">GCash</option>
@@ -858,6 +858,8 @@
     <script type="text/javascript">
         let dataTableCashAdvance;
         let arrSelectedCashAdvance = [];
+        let words="";
+        let currency="";
 
         $(document).ready(function () {
 
@@ -1114,34 +1116,33 @@
                 });
             });
 
-            $('#modalEditCashAdvance').on('click', function(){
-                $.ajax({
-                    url: "get_noted_by",
-                    method: "get",
-                    dataType: "json",
-                    beforeSend: function(){
-                    },
-                    success: function(response){
-                        // console.log(response);
-                        // for (let index = 0; index < response['get_noted_by'].length; index++) {
-                            $('#selectEditPaymentReleasedBy').val(response['get_payment_released_by_cashier'][0]['rapidx_id']).trigger('change');
-                            $('#selectEditTreasuryHead').val(response['get_noted_by_treasury_head'][0]['rapidx_id']).trigger('change');
-                            $('#selectEditFinanceGeneralManager').val(response['get_noted_by_finance_general_manager'][0]['rapidx_id']).trigger('change');
-                        // }
-                    },
-                });
-            });
+            // $('#modalEditCashAdvance').on('click', function(){
+            //     $.ajax({
+            //         url: "get_noted_by",
+            //         method: "get",
+            //         dataType: "json",
+            //         beforeSend: function(){
+            //         },
+            //         success: function(response){
+            //             // console.log(response);
+            //             // for (let index = 0; index < response['get_noted_by'].length; index++) {
+            //                 $('#selectEditPaymentReleasedBy').val(response['get_payment_released_by_cashier'][0]['rapidx_id']).trigger('change');
+            //                 $('#selectEditTreasuryHead').val(response['get_noted_by_treasury_head'][0]['rapidx_id']).trigger('change');
+            //                 $('#selectEditFinanceGeneralManager').val(response['get_noted_by_finance_general_manager'][0]['rapidx_id']).trigger('change');
+            //             // }
+            //         },
+            //     });
+            // });
 
             // ============================== ADD CASH ADVANCE FETCH DATA ==============================
             $("#txtAddEmployeeNo").keypress(function(){
-				$(this).val($(this).val().toUpperCase());
+				var empNo = $(this).val($(this).val().toUpperCase());
 			});
             $("#txtAddEmployeeNo").keyup(function() {
                 var empNo = $(this).val();
                 empNo.toUpperCase();
-                // console.log(empNo);
 
-                if(empNo != null ){
+                if(empNo != null){
                     $.ajax({
                         url: 'get_employee_info',
                         method: 'get',
@@ -1152,19 +1153,23 @@
                         beforeSend: function(){
                             $("input[name='official_station']", $("#formAddCashAdvance")).val();
                             $("input[name='position']", $("#formAddCashAdvance")).val();
-                            // console.log(value);
                         },
                         success: function(result){
                             if(result['data'] != null){
+                                $('#selectAddModeOfPayment').attr('disabled', false)
+                                $('#selectAddModeOfPayment').val('').trigger('change');
+
                                 $("input[name='applicant_name']", $("#formAddCashAdvance")).val(result['data']['FirstName'] + " " + result['data']['LastName']);
                                 $("input[name='position']", $("#formAddCashAdvance")).val(result['data']['position_info']['Position']);
                                 $("input[name='official_station']", $("#formAddCashAdvance")).val(result['data']['department_info']['Department'] + ' / ' + result['data']['section_info']['Section']);
                             }else{
+                                $('#selectAddModeOfPayment').attr('disabled', true)
+                                $('#selectAddModeOfPayment').val('').trigger('change'); 
+
                                 $("input[name='position']", $("#formAddCashAdvance")).val('');
                                 $("input[name='official_station']", $("#formAddCashAdvance")).val('');
                                 $("input[name='applicant_name']", $("#formAddCashAdvance")).val('');
 
-                                $('#selectAddModeOfPayment').val('').trigger('change');
                                 // Optional for clearing values
                                 // $("#txtAddAppName").val('');
                                 // $("#txtAddos").val('');
@@ -1176,6 +1181,7 @@
                     $("#txtAddApplicantName").val('');
                     $("#txtAddOfficialStation").val('');
                     $("#txtAddPosition").val('');
+                    $('#selectAddModeOfPayment').val('').trigger('change');
                 }
             }); // ADD CASH ADVANCE FETCH DATA
 
@@ -1200,10 +1206,23 @@
                             },
 
                             success: function(result){
-                                if(result['payroll_account'] != null){
-                                    $("#txtAddPayrollAccountNo").val(result['payroll_account'][0].account_no).trigger('change')
-                                    // console.log(result['payroll_account'].AccountNumber);
+                                let payrollAccount = result['payrollAccount']; 
+                                let rapidxDepartmentId = result['rapidxDepartmentId']; 
+
+                                if(payrollAccount != null && payrollAccount[0] != undefined){
+                                    let getPayrollAccount = payrollAccount[0].account_no;
+
+                                    if(payrollAccount[0].rapidx_account_info != null){
+                                        if(rapidxDepartmentId == 25){
+                                            $("#txtAddPayrollAccountNo").val(getPayrollAccount)
+                                        }else{
+                                            $("#txtAddPayrollAccountNo").val('****'+getPayrollAccount.substring(getPayrollAccount.length - 4))
+                                        }
+                                    }else{
+                                        alert('Employee No: '+$('#txtAddEmployeeNo').val()+' \nPayroll account is not found! \nPlease contact the Finance Department regarding this matter. \nThank You! ');
+                                    }
                                 }else{
+                                    alert('Employee No: '+$('#txtAddEmployeeNo').val()+' \nPayroll account is not found! \nPlease contact the Finance Department regarding this matter. \nThank You! ');
                                     // Optional for clearing values
                                     // $("#txtAddPayrollAccountNo").val('');
                                     // $("#txtAddos").val('');
@@ -1234,9 +1253,21 @@
                             },
 
                             success: function(result){
-                                if(result['payroll_account'] != null){
-                                    $("#txtEditPayrollAccountNo").val(result['payroll_account'][0].account_no);
-                                    // console.log(result['payroll_account'].AccountNumber);
+                                let payrollAccount = result['payrollAccount']; 
+                                let rapidxDepartmentId = result['rapidxDepartmentId']; 
+                                
+                                if(payrollAccount != null){
+                                    let getPayrollAccount = payrollAccount[0].account_no;
+
+                                    if(payrollAccount[0].rapidx_account_info != null){
+                                        if(rapidxDepartmentId == 25){
+                                            $("#txtEditPayrollAccountNo").val(payrollAccount[0].account_no);
+                                        }else{
+                                            $("#txtEditPayrollAccountNo").val('****'+getPayrollAccount.substring(getPayrollAccount.length - 4))
+                                        }
+                                    }else{
+                                        alert('Employee No: '+$('#txtAddEmployeeNo').val()+' \nPayroll account is not found! \nPlease contact the Finance Department regarding this matter. \nThank You! ');
+                                    }
                                 }else{
                                     // Optional for clearing values
                                     // $("#txtAddPayrollAccountNo").val('');
@@ -1273,8 +1304,8 @@
 
             // ============================== ADD CA AMOUNT CONVERT TO WORD ==============================
             $(function() {
-                var words="";
-                var currency="";
+                // var words="";
+                // var currency="";
                 $("#txtAddAmountOfCashAdvance").on("keyup", per);
                 $('.radioBtn').on('click', function(){
                     $('#txtAddAmountOfCashAdvance').val('');
@@ -1332,18 +1363,30 @@
                 // READ ONLY (File Upload)
                 $('#txtEditReuploadFile').attr('disabled', 'disabled');
                 $('#txtEditAmountOfCashAdvance').attr('readonly', true);
+
+                $.ajax({
+                    url: "get_noted_by",
+                    method: "get",
+                    dataType: "json",
+                    beforeSend: function(){
+                    },
+                    success: function(response){
+                        // console.log(response);
+                        // for (let index = 0; index < response['get_noted_by'].length; index++) {
+                            $('#selectEditPaymentReleasedBy').val(response['get_payment_released_by_cashier'][0]['rapidx_id']).trigger('change');
+                            $('#selectEditTreasuryHead').val(response['get_noted_by_treasury_head'][0]['rapidx_id']).trigger('change');
+                            $('#selectEditFinanceGeneralManager').val(response['get_noted_by_finance_general_manager'][0]['rapidx_id']).trigger('change');
+                        // }
+                    },
+                });
             });
             // The EditCashAdvance(); function is inside public/js/my_js/CashAdvance.js
             // after the submission, the ajax request will pass the formEditCashAdvance(form) of its data(input) in the uri(edit_cash_advance)
             // then the controller will handle that uri to use specific method called edit_cash_advance() inside CashAdvanceController
             $("#formEditCashAdvance").submit(function(event){
                 event.preventDefault();
-                if($('#txtAddCashAdvanceNo').val() == 'You need 10,000 above'){
-                    alert('Cash Advance System does not accept below 10,000 pesos.')
-                }else{
                     EditCashAdvance();
                     dataTableCashAdvance.draw();
-                }
             });
 
             //====================== EDIT MODE OF PAYMENT ( ONCHANGE ) ======================
@@ -1391,12 +1434,18 @@
                         },
                         success: function(result){
                             if(result['data'] != null){
+                                $('#selectEditModeOfPayment').attr('disabled', false)
+                                $('#selectEditModeOfPayment').val('').trigger('change');
+
                                 $("input[name='applicant_name']", $("#formEditCashAdvance")).val(result['data']['FirstName'] + " " + result['data']['LastName']);
                                 $("input[name='position']", $("#formEditCashAdvance")).val(result['data']['position_info']['Position']);
                                 // $("input[name='official_station']", $("#formEditCashAdvance")).val(result['data']['department_info']['Department']);
                                 $("input[name='official_station']", $("#formEditCashAdvance")).val(result['data']['department_info']['Department'] + '/' + result['data']['section_info']['Section']);
-
+                                
                             }else{
+                                $('#selectEditModeOfPayment').attr('disabled', true)
+                                $('#selectEditModeOfPayment').val('').trigger('change');
+
                                 $("input[name='applicant_name']", $("#formEditCashAdvance")).val('');
                                 $("input[name='position']", $("#formEditCashAdvance")).val('');
                                 $("input[name='official_station']", $("#formEditCashAdvance")).val('');
@@ -1418,8 +1467,8 @@
 
             // ============================== EDIT CA AMOUNT CONVERT TO WORD ==============================
             $(function() {
-                var words="";
-                var currency="";
+                // var words="";
+                // var currency="";
                 $("#txtEditAmountOfCashAdvance").on("keydown keyup", per);
                 $('.radioBtn').on('click', function(){
                     $('#txtEditAmountOfCashAdvance').val('');
@@ -1503,7 +1552,7 @@
             $('#txtAddAmountOfCashAdvance').keyup(function(){
                 // console.log('eqwe');
                 ca_auto_generate = $(this).val();
-                var currency = "";
+                // var currency = "";
 
                 if($('.peso').is(":checked")){
                     currency = $('.peso').val();
@@ -1569,6 +1618,15 @@
             });
 
             $('#txtEditAmountOfCashAdvance').keyup(function(){
+                console.log('currency: ', currency);
+
+                if(currency == 'Pesos'){
+                    if($('#txtEditAmountOfCashAdvance').val() > 10000){
+                        $('#btnEditCashAdvance').removeClass('d-none')
+                    }else{
+                        $('#btnEditCashAdvance').addClass('d-none')
+                    }
+                }
                 $.ajax({
                     url: "get_president",
                     method: "get",
