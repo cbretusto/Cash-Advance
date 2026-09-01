@@ -2391,7 +2391,6 @@ class CashAdvanceController extends Controller
             $result .= "<a href='view_pdf/". $employee_infos->cash_advance_details->id . "' target='_blank'>
                         <button type='button' class='btn btn-outline-primary btn-sm fa fa-eye text-center actionViewCashAdvance' style='width:105px;margin:2%' cash_advance-id='" . $employee_infos->cash_advance_details->id . "' data-toggle='modal' data-target='#pdfViewCashAdvance' data-keyboard='false'> View</button>
                         </a>";
-                        // <button type='button' class='btn btn-outline-primary btn-sm fa fa-eye text-center actionViewCashAdvance' style='width:105px;margin:2%' cash_advance-id='" . $employee_infos->cash_advance_details->id . "' data-toggle='modal' data-target='#pdfViewCashAdvance' data-keyboard='false'> View</button>
             $result .= '<br>';
             $result .= '</center>';
             return $result;
