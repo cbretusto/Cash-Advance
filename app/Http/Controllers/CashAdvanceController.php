@@ -1494,7 +1494,7 @@ class CashAdvanceController extends Controller
 
         $validator = Validator::make($data, $rules);
 
-        if ($validator->fails()) {
+        if ($validator->fails()) { //result
             return response()->json(['validation' => 'hasError', 'error' => $validator->messages()]);
         }
         else{
@@ -1536,7 +1536,7 @@ class CashAdvanceController extends Controller
                             'date'                  => $request->date,
                             'created_at'            => date('Y-m-d H:i:s')
                         ]);
-    
+
                         ApproverEmailRecipient::insert([
                             'ca_id'                   => $ca_id,
                             'user_id'                 => $rapidx_user_id,
@@ -1549,7 +1549,7 @@ class CashAdvanceController extends Controller
                             'president'               => $request->president,
                             'created_at'              => date('Y-m-d H:i:s')
                         ]);
-    
+
                         if ($request->supervisor != ""){
                             $send_email = $request->supervisor;
                             $send_email_to_ca_owner = $rapidx_user_id;
@@ -1558,7 +1558,7 @@ class CashAdvanceController extends Controller
                             $get_data = ['data' => $data];
                             $recipients = SystemOneSupervisor::where('email_add', $get_email->supervisor_approver->email_add)->get();
                             $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
-    
+
                             Mail::send('mail.cash_advance_approval_mail', $get_data, function($message) use($recipients, $cc_owner){
                                 $message->to($recipients[0]->email_add)->cc($cc_owner[0]->email)->bcc('cbretusto@pricon.ph')->subject('For Approval in Online Cash Advance');
                             });
@@ -1570,7 +1570,7 @@ class CashAdvanceController extends Controller
                             $get_data = ['data' => $data];
                             $recipients = RapidXUser::where('id', $send_email)->get();
                             $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
-    
+
                             // return $recipients;
                             Mail::send('mail.cash_advance_approval_mail', $get_data, function($message) use($recipients, $cc_owner){
                                 $message->to($recipients[0]->email)->bcc('cbretusto@pricon.ph')->subject('For Approval in Online Cash Advance');
@@ -1714,7 +1714,7 @@ class CashAdvanceController extends Controller
                         'date'                  => $request->date,
                         'updated_at'            => date('Y-m-d H:i:s'),
                     ]);
-    
+
                     ApproverEmailRecipient::where('ca_id', $request->cash_advance_id)->update([
                         'user_id'                 => $rapidx_user_id,
                         'supervisor'              => $request->supervisor,
@@ -1731,12 +1731,12 @@ class CashAdvanceController extends Controller
                         $send_email = $request->supervisor;
                         $send_email_to_ca_owner = $rapidx_user_id;
                         $get_email = ApproverEmailRecipient::with('supervisor_approver')->where('supervisor',$send_email)->first();
-    
+
                         $for_approval = OnlineCashAdvance::with(['approver_email_recipients',])->get();
                         $get_data = ['data' => $data];
                         $recipients = SystemOneSupervisor::where('email_add', $get_email->supervisor_approver->email_add)->get();
                         $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
-    
+
                         Mail::send('mail.cash_advance_approval_mail', $get_data, function($message) use($recipients, $cc_owner){
                             $message->to($recipients[0]->email_add)->cc($cc_owner[0]->email)->bcc('cbretusto@pricon.ph')->subject('For Approval in Online Cash Advance');
                         });
@@ -1748,7 +1748,7 @@ class CashAdvanceController extends Controller
                         $get_data = ['data' => $data];
                         $recipients = RapidXUser::where('id', $send_email)->get();
                         $cc_owner = RapidXUser::where('id', $send_email_to_ca_owner)->get();
-    
+
                         Mail::send('mail.cash_advance_approval_mail', $get_data, function($message) use($recipients, $cc_owner){
                             $message->to($recipients[0]->email)->bcc('cbretusto@pricon.ph')->subject('For Approval in Online Cash Advance');
                         });
@@ -2423,7 +2423,7 @@ class CashAdvanceController extends Controller
         ->where('id', $request->loginUserId)
         ->where('user_stat', 1)
         ->get();
-        
+
         // return response()->json(['result' => count($user_log[0]->rapidx_user_access_details)]);
         return response()->json(['result' => $user_log[0]]);
     }

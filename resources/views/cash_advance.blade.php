@@ -344,7 +344,7 @@
                                             {{-- <input type="text" class="form-control" id="txtAddRapidxUser" name="rapidx_user_id">  --}}
                                         </div>
                                         <div class="form-group col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label">Checked By: (OPTIONAL)</label>
+                                            <label class="form-control-label">Conformed by / Checked By: (OPTIONAL)</label>
                                             <div class="input-group">
                                                 <select class="form-control select2bs4 selectAddSupervisor" id="selectAddSupervisor" name="supervisor"></select>
                                             </div>
@@ -546,7 +546,7 @@
                                                 <input type="text" class="form-control" id="txtEditRequestedBy" name="requested_by" placeholder="Name of requestor" readonly>
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label">Checked By:</label>
+                                                <label class="form-control-label">Conformed by / Checked By: (OPTIONAL)</label>
                                                 <div class="input-group">
                                                     <select class="form-control select2bs4 selectEditSupervisor" id="selectEditSupervisor" name="supervisor"></select>
                                                 </div>
@@ -1737,10 +1737,10 @@
             });
 
             function reloadCashAdvanceDataTable() {
-            dataTableCashAdvance.draw();
-            dataTableCashAdvanceApproved.draw();
-            dataTableCashAdvanceDisapproved.draw();
-            dataTableCashAdvanceLiquidated.draw();
+                dataTableCashAdvance.draw();
+                dataTableCashAdvanceApproved.draw();
+                dataTableCashAdvanceDisapproved.draw();
+                dataTableCashAdvanceLiquidated.draw();
             }
             $("#modalApproveRemark").on('hidden.bs.modal', function () {
                 console.log('DataTable Reload Successfully');

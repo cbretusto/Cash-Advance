@@ -119,7 +119,7 @@
             <tr>
                 <td style="text-align:right;">REQUESTED BY:</td>
                 <td style="border-bottom: 1px solid black;"><center>&nbsp;{{ $data['requested_by'] }}</center></td>
-                <td style="text-align:right;">CHECKED BY:</td>
+                <td style="text-align:right;">CONFORMED BY / CHECKED BY:</td>
                 <td style="border-bottom: 1px solid black;"><center>&nbsp;{{ $data['supervisor'] }}</center></td>
             </tr>
 
@@ -127,7 +127,7 @@
                 <td style="border-bottom: -13px;"></td>
                 <td style="border-bottom: -13px;"></td>
                 <td style="border-bottom: -13px;"></td>
-                <td style="border-bottom: -13px; font-size:6;"><center>Supervisor</center></td>
+                <td style="border-bottom: -13px; font-size:6;"><center></center></td>
             </tr>
 
             <tr>

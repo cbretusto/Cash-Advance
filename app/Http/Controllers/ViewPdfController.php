@@ -126,7 +126,7 @@ class ViewPdfController extends Controller
         }
 
         // return $get_approver;
-        // $pdf = PDF::loadView('view_cash_advance', $data, $e_signature);
+        // return $pdf = $e_signature;
         $pdf = PDF::loadView('view_cash_advance',
             array('data' => $data,
                 'get_approver' => $get_approver,

@@ -85,7 +85,7 @@
 
                                 <div class="form-group">
                                     <label>Classification</label>
-                                    <select class="form-control" name="classification reset-value" id="selectAddUserPosition" style="width: 100%;">
+                                    <select class="form-control reset-value" name="classification" id="selectAddUserPosition" style="width: 100%;">
                                         <option selected disabled value="">-SELECT-</option>
                                         <option value="President">President</option>
                                         <option value="Finance General Manager">Finance General Manager</option>
@@ -137,7 +137,7 @@
 
                                     <div class="form-group">
                                         <label>Classification</label>
-                                        <select class="form-control" name="classification reset-value" id="selectEditUserClassification" style="width: 100%;">
+                                        <select class="form-control reset-value" name="classification" id="selectEditUserClassification" style="width: 100%;">
                                             <option selected disabled value="">-SELECT-</option>
                                             <option value="President">President</option>
                                             <option value="Finance General Manager">Finance General Manager</option>
