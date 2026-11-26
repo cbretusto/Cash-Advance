@@ -1164,7 +1164,7 @@
                                 $("input[name='official_station']", $("#formAddCashAdvance")).val(result['data']['department_info']['Department'] + ' / ' + result['data']['section_info']['Section']);
                             }else{
                                 $('#selectAddModeOfPayment').attr('disabled', true)
-                                $('#selectAddModeOfPayment').val('').trigger('change'); 
+                                $('#selectAddModeOfPayment').val('').trigger('change');
 
                                 $("input[name='position']", $("#formAddCashAdvance")).val('');
                                 $("input[name='official_station']", $("#formAddCashAdvance")).val('');
@@ -1206,8 +1206,8 @@
                             },
 
                             success: function(result){
-                                let payrollAccount = result['payrollAccount']; 
-                                let rapidxDepartmentId = result['rapidxDepartmentId']; 
+                                let payrollAccount = result['payrollAccount'];
+                                let rapidxDepartmentId = result['rapidxDepartmentId'];
 
                                 if(payrollAccount != null && payrollAccount[0] != undefined){
                                     let getPayrollAccount = payrollAccount[0].account_no;
@@ -1253,9 +1253,9 @@
                             },
 
                             success: function(result){
-                                let payrollAccount = result['payrollAccount']; 
-                                let rapidxDepartmentId = result['rapidxDepartmentId']; 
-                                
+                                let payrollAccount = result['payrollAccount'];
+                                let rapidxDepartmentId = result['rapidxDepartmentId'];
+
                                 if(payrollAccount != null){
                                     let getPayrollAccount = payrollAccount[0].account_no;
 
@@ -1441,7 +1441,7 @@
                                 $("input[name='position']", $("#formEditCashAdvance")).val(result['data']['position_info']['Position']);
                                 // $("input[name='official_station']", $("#formEditCashAdvance")).val(result['data']['department_info']['Department']);
                                 $("input[name='official_station']", $("#formEditCashAdvance")).val(result['data']['department_info']['Department'] + '/' + result['data']['section_info']['Section']);
-                                
+
                             }else{
                                 $('#selectEditModeOfPayment').attr('disabled', true)
                                 $('#selectEditModeOfPayment').val('').trigger('change');

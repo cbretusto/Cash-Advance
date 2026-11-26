@@ -242,9 +242,13 @@ function AddCashAdvance(){
                     $("#formAddCashAdvance")[0].reset();
                     toastr.success('Succesfully Saved!');
                     dataTableCashAdvance.draw(); // reload the tables after insertion
-                }if(response['result'] == 2){
+                }
+
+                if(response['result'] == 2){
                     alert('Employee No: '+$('#txtAddEmployeeNo').val()+' \nPayroll account is not found! \nPlease contact the Finance Department regarding this matter. \nThank You! ');
-                }else{
+                }
+
+                if(response['result'] == 0){
                     alert('Cash Advance No. "'+$("#txtAddCashAdvanceNo").val()+'" is already exist! '+"\n\n"+' Please refresh the browser to process the request once again.')
                 }
             }
@@ -668,7 +672,7 @@ function GetCashAdvanceByIdToEdit(cash_AdvanceId){
                 }
 
                 setTimeout(() => {
-                    TextareaAutoHeight(document.getElementById('txtEditPurpose'))                    
+                    TextareaAutoHeight(document.getElementById('txtEditPurpose'))
                 }, 500);
 
                 $('#modalEditCashAdvance').on('hide', function() {
